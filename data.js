@@ -27,6 +27,7 @@ window.GUIDE = [
           { cmd: "--help", desc: "Most commands print a short usage summary with --help.", ex: "cp --help", level: "beginner" },
           { cmd: "clear", desc: "Clear the terminal screen (or press Ctrl+L).", ex: "clear", level: "beginner" },
           { cmd: "history", desc: "Show previously run commands. Re-run one with !number.", ex: "history | tail -20\n!42", level: "beginner" },
+          { cmd: "history editing", desc: "Navigate and edit past commands. ↑ / ↓ scroll through history. Ctrl+R opens a reverse search — keep typing to narrow it down, press Ctrl+R again for the next match, then → or End to land on the command and edit it before running. fc opens the last command in your $EDITOR so you can rewrite it fully, then save & quit to execute. history -d removes a single entry; HISTCONTROL stops duplicates from piling up.", ex: "# Reverse search (most useful shortcut)\n# Press Ctrl+R, then type part of the command\n(reverse-i-search)`ssh': ssh user@server\n\n# Edit last command in your editor, then run it\nfc\n\n# Edit a specific history entry by number\nfc 42\n\n# Re-run last command\n!!\n\n# Re-run last command starting with 'git'\n!git\n\n# Delete entry 42 from history\nhistory -d 42\n\n# Don't save duplicate commands in history\nexport HISTCONTROL=ignoredups", level: "beginner" },
           { cmd: "echo", desc: "Print text or the value of a variable.", ex: "echo \"Hello\"\necho $HOME", level: "beginner" },
           { cmd: "which / type", desc: "Show where a command lives or what kind of command it is.", ex: "which python3\ntype ls", level: "beginner" },
           { cmd: "whoami", desc: "Print the current user name.", ex: "whoami", level: "beginner" }
@@ -148,7 +149,8 @@ window.GUIDE = [
           { cmd: "uptime", desc: "How long the system has been running and the load average.", ex: "uptime", level: "beginner" },
           { cmd: "free", desc: "Show memory (RAM) usage.", ex: "free -h", level: "beginner" },
           { cmd: "lscpu / lsblk / lsusb", desc: "List CPU details, block devices (disks) and USB devices.", ex: "lscpu\nlsblk\nlsusb", level: "beginner" },
-          { cmd: "reboot / shutdown", desc: "Restart or power off the machine.", ex: "sudo reboot\nsudo shutdown -h now\nsudo shutdown -r +10", level: "beginner", danger: true }
+          { cmd: "reboot / shutdown", desc: "Restart or power off the machine.", ex: "sudo reboot\nsudo shutdown -h now\nsudo shutdown -r +10", level: "beginner", danger: true },
+          { cmd: "XQuartz font size", desc: "Change the terminal font size in XQuartz (macOS X11). Edit ~/.Xresources to set a persistent size, then apply with xrdb. Restart xterm to see the change. You can also right-click inside an xterm window and choose VT Fonts → Huge/Large/Medium/Small for a quick one-off change.", ex: "# 1. Edit ~/.Xresources (create if it doesn't exist)\necho 'XTerm*faceSize: 14' >> ~/.Xresources\necho 'XTerm*faceName: Menlo' >> ~/.Xresources\n\n# 2. Apply the settings\nxrdb -merge ~/.Xresources\n\n# 3. Open a new xterm to see the change\nxterm &", out: "# To verify current settings:\nxrdb -query | grep -i xterm", level: "beginner" }
         ]
       },
       {

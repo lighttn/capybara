@@ -54,6 +54,48 @@
       color: var(--muted); font-size: .85rem; margin-top: 2rem;
     }
 
+
+    /* ── Camera cards ── */
+    .cam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem; margin-top: .5rem;
+    }
+    .cam-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px; overflow: hidden; transition: border-color .2s;
+    }
+    .cam-card:hover { border-color: var(--linux); }
+    .cam-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 1rem 1.2rem .7rem;
+      border-bottom: 1px solid var(--line); gap: .5rem;
+    }
+    .cam-model { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 .2rem; }
+    .cam-name  { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
+    .cam-badge {
+      flex-shrink: 0; font-size: .68rem; font-weight: 600;
+      padding: .18rem .55rem; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: .06em;
+      white-space: nowrap; margin-top: .15rem;
+    }
+    .cam-badge.mono  { background: rgba(100,116,139,.25); color: #94a3b8; }
+    .cam-badge.color { background: rgba(192,132,252,.18); color: #c084fc; }
+    .cam-specs { padding: .8rem 1.2rem 1rem; }
+    .cam-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: .28rem 0; border-bottom: 1px solid var(--line); gap: .5rem;
+    }
+    .cam-row:last-child { border-bottom: none; }
+    .cam-label { font-size: .75rem; color: var(--muted); flex-shrink: 0; }
+    .cam-val   { font-size: .82rem; color: var(--text); font-family: 'JetBrains Mono', monospace; text-align: right; }
+    .cam-highlight { color: #67e8f9; }
+    .cam-tag {
+      display: inline-block; font-size: .68rem; padding: .1rem .45rem; border-radius: 4px;
+      background: rgba(103,232,249,.12); color: #67e8f9; margin-left: .3rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
     /* ── Linux section visibility ── */
     #linux-shell { display: block; }
     #linux-shell.hidden { display: none; }
@@ -117,17 +159,109 @@
   <div id="section-cam">
     <p class="ph-eyebrow">📷 Cam info</p>
     <h2 class="ph-section-title">Camera Specifications</h2>
-    <div class="ph-grid">
-      <div class="ph-card"><h3>Camera Model</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Sensor</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Resolution</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Pixel Size</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Frame Rate</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Interface</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Quantum Efficiency</h3><p class="placeholder">— to be filled in —</p></div>
-      <div class="ph-card"><h3>Notes</h3><p class="placeholder">— to be filled in —</p></div>
-    </div>
-    <div class="ph-note">📝 Camera specifications placeholder. Fill in with actual camera data.</div>
+    <p style="color:var(--muted);font-size:.9rem;margin:.25rem 0 1.5rem;">Scientific cameras available for microscopy setups.</p>
+    <div class="cam-grid">
+
+      <!-- Basler ace acA2500-60um -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Basler ace</p>
+            <p class="cam-name">acA2500-60um</p>
+          </div>
+          <span class="cam-badge mono">Mono</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">5 MP <span class="cam-tag">2592 × 1944</span></span></div>
+          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">4.80 μm</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">PYTHON 5000</span></div>
+          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">60 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">10-bit</span></div>
+          <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">56.8 dB</span></div>
+          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.0</span></div>
+        </div>
+      </div>
+
+      <!-- Basler ace2 a2A4504-18umPRO -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Basler ace2 PRO</p>
+            <p class="cam-name">a2A4504-18umPRO</p>
+          </div>
+          <span class="cam-badge mono">Mono</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">20.2 MP <span class="cam-tag">4504 × 4504</span></span></div>
+          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">2.74 μm</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">IMX541</span></div>
+          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">18 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">8 / 10 / 12-bit</span></div>
+          <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">70.8 dB</span></div>
+          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.0</span></div>
+        </div>
+      </div>
+
+      <!-- Thorlabs Kiralux CS505CU1 -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Thorlabs Kiralux</p>
+            <p class="cam-name">CS505CU1</p>
+          </div>
+          <span class="cam-badge color">Color</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">5.01 MP <span class="cam-tag">2448 × 2048</span></span></div>
+          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">3.45 μm</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">CMOS Color</span></div>
+          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">35 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">12-bit</span></div>
+          <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">71 dB</span></div>
+          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.0</span></div>
+        </div>
+      </div>
+
+      <!-- Allied Vision Alvium 1800 U-2050 -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Allied Vision Alvium</p>
+            <p class="cam-name">1800 U-2050</p>
+          </div>
+          <span class="cam-badge mono">Mono</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">20.2 MP <span class="cam-tag">5544 × 3694</span></span></div>
+          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">2.40 μm</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">IMX183</span></div>
+          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">21 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Spectral range</span><span class="cam-val">300–1100 nm <span class="cam-tag">NIR</span></span></div>
+          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.1</span></div>
+        </div>
+      </div>
+
+      <!-- FLIR Grasshopper3 -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">FLIR Grasshopper3</p>
+            <p class="cam-name">GS3-PGE-50S5M-C</p>
+          </div>
+          <span class="cam-badge mono">Mono</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">5 MP <span class="cam-tag">2448 × 2048</span></span></div>
+          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">3.45 μm</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">ICX625 CCD</span></div>
+          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">15 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">14-bit</span></div>
+          <div class="cam-row"><span class="cam-label">Buffer</span><span class="cam-val">128 MB</span></div>
+          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">GigE PoE</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.cam-grid -->
   </div>
 
   <!-- ══ HENE CDI ══ -->

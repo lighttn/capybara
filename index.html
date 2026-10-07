@@ -1,23 +1,72 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shell &amp; Snake — Linux &amp; Python Command Guide</title>
-  <meta name="description" content="A beginner&#39;s guide and quick-reference cheat sheet for Linux and Python commands.">
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-  <link href="./css2" rel="stylesheet">
+  <title>Capybara</title>
+  <meta name="description" content="Capybara — Linux commands, experimental system info, and microscope reference.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* ── Capybara header mascot ── */
+    .hero { position: relative; overflow: hidden; }
+    .capybara-wrap {
+      position: absolute;
+      top: 0; right: 0;
+      width: 180px; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .capybara-svg { width: 140px; height: 140px; opacity: .88; }
+
+    /* ── Extra tab colours ── */
+    .tab-exp  { --tab-accent: #c084fc; }
+    .tab-mic  { --tab-accent: #67e8f9; }
+    .main-tab { border-bottom: 3px solid transparent; }
+    .main-tab[aria-selected="true"] { border-bottom-color: var(--tab-accent, var(--linux)); }
+
+    /* ── Placeholder sections ── */
+    #section-exp, #section-mic { display: none; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto; }
+    #section-exp.active, #section-mic.active { display: block; }
+    .ph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+    .ph-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+    }
+    .ph-card h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 .5rem; }
+    .ph-card p  { font-size: .95rem; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; }
+    .ph-card p.placeholder { color: var(--muted); font-style: italic; font-family: 'Space Grotesk', sans-serif; font-size: .85rem; }
+    .ph-section-title {
+      font-size: 1.4rem; font-weight: 600; color: var(--text);
+      margin: 0 0 .25rem;
+    }
+    .ph-eyebrow { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0 0 1rem; }
+    .ph-note {
+      background: var(--surface); border: 1px dashed var(--border);
+      border-radius: 8px; padding: .8rem 1.1rem;
+      color: var(--muted); font-size: .85rem; margin-top: 2rem;
+    }
+
+    /* ── Linux section visibility ── */
+    #linux-shell { display: block; }
+    #linux-shell.hidden { display: none; }
+  </style>
 </head>
 <body>
+
+  <!-- ══ HEADER ══ -->
   <header class="hero">
     <div class="hero-inner">
-      <p class="prompt"><span class="user">you@learning</span>:<span class="path">~</span>$ <span class="typed">man everything</span><span class="cursor">▌</span></p>
-      <h1>Shell <span class="amp">&amp;</span> Snake</h1>
-      <p class="tagline">A beginner's guide and a quick-look cheat sheet for <strong>Linux</strong> and <strong>Python</strong> commands. Pick a tab, find a command, copy it, run it.</p>
+      <p class="prompt"><span class="user">you@capybara</span>:<span class="path">~</span>$ <span class="typed">./explore.sh</span><span class="cursor">▌</span></p>
+      <h1>Capybara 🦫</h1>
+      <p class="tagline">Linux command reference, experimental system notes, and microscope specs — all in one place.</p>
       <div class="search-wrap">
         <span class="search-icon">/</span>
-        <input id="search" type="search" placeholder="Search commands… e.g. copy, chmod, list comprehension" autocomplete="off">
+        <input id="search" type="search" placeholder="Search Linux commands… e.g. copy, chmod, grep" autocomplete="off">
         <kbd>Ctrl K</kbd>
       </div>
       <div class="legend">
@@ -27,291 +76,212 @@
         <span class="badge danger">⚠ careful</span>
       </div>
     </div>
+
+    <!-- cute capybara SVG -->
+    <div class="capybara-wrap" aria-hidden="true">
+      <svg class="capybara-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- body -->
+        <ellipse cx="105" cy="130" rx="72" ry="48" fill="#a07850"/>
+        <!-- head -->
+        <ellipse cx="60" cy="105" rx="42" ry="36" fill="#b08860"/>
+        <!-- snout -->
+        <ellipse cx="35" cy="118" rx="18" ry="12" fill="#c09870"/>
+        <!-- nostrils -->
+        <circle cx="30" cy="116" r="3" fill="#7a5030"/>
+        <circle cx="40" cy="116" r="3" fill="#7a5030"/>
+        <!-- eye -->
+        <circle cx="50" cy="98" r="7" fill="#fff"/>
+        <circle cx="51" cy="98" r="4.5" fill="#2a1a08"/>
+        <circle cx="53" cy="96" r="1.5" fill="#fff"/>
+        <!-- ear -->
+        <ellipse cx="78" cy="74" rx="10" ry="13" fill="#a07850"/>
+        <ellipse cx="78" cy="74" rx="6" ry="9" fill="#d4a07a"/>
+        <!-- legs -->
+        <rect x="55" y="168" width="16" height="24" rx="7" fill="#8a6840"/>
+        <rect x="82" y="172" width="16" height="20" rx="7" fill="#8a6840"/>
+        <rect x="130" y="168" width="16" height="24" rx="7" fill="#8a6840"/>
+        <rect x="153" y="172" width="16" height="20" rx="7" fill="#8a6840"/>
+        <!-- tail (tiny) -->
+        <ellipse cx="176" cy="128" rx="8" ry="5" fill="#8a6840"/>
+        <!-- whisker marks -->
+        <line x1="18" y1="112" x2="8" y2="108" stroke="#6a4020" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18" y1="116" x2="6" y2="116" stroke="#6a4020" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18" y1="120" x2="8" y2="124" stroke="#6a4020" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- fur texture lines -->
+        <path d="M 90 110 Q 110 100 130 108" stroke="#8a6840" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 100 125 Q 125 115 150 120" stroke="#8a6840" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- smile -->
+        <path d="M 28 124 Q 35 130 44 124" stroke="#6a4020" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
   </header>
 
-  <nav class="main-tabs" role="tablist" aria-label="Main sections" id="main-tabs"><button role="tab" class="main-tab tab-linux" aria-selected="true" data-main="linux">
-        <span class="ico">🐧</span>Linux<span class="count">94</span>
-      </button><button role="tab" class="main-tab tab-python" aria-selected="false" data-main="python">
-        <span class="ico">🐍</span>Python<span class="count">57</span>
-      </button></nav>
+  <!-- ══ MAIN TABS ══ -->
+  <nav class="main-tabs" role="tablist" aria-label="Main sections" id="main-tabs">
+    <button role="tab" class="main-tab tab-linux" aria-selected="true" data-main="linux">
+      <span class="ico">🐧</span>Linux<span class="count" id="linux-count"></span>
+    </button>
+    <button role="tab" class="main-tab tab-exp" aria-selected="false" data-panel="exp">
+      <span class="ico">🔬</span>Experimental System Info
+    </button>
+    <button role="tab" class="main-tab tab-mic" aria-selected="false" data-panel="mic">
+      <span class="ico">🔭</span>Microscope Info
+    </button>
+  </nav>
 
-  <div class="layout">
-    <aside class="sub-tabs" id="sub-tabs" role="tablist" aria-label="Topics"><p class="side-title">Linux topics</p><button role="tab" class="sub-tab" aria-selected="false" data-sub="start">
-          <span class="ico">🚀</span><span class="lbl">Getting Started</span><span class="n">10</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="files">
-          <span class="ico">📁</span><span class="lbl">Files &amp; Data Transfer</span><span class="n">14</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="view">
-          <span class="ico">📝</span><span class="lbl">Viewing &amp; Editing</span><span class="n">8</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="search">
-          <span class="ico">🔍</span><span class="lbl">Search &amp; Text</span><span class="n">9</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="perms">
-          <span class="ico">🔐</span><span class="lbl">Permissions &amp; Users</span><span class="n">9</span>
-        </button><button role="tab" class="sub-tab" aria-selected="true" data-sub="system">
-          <span class="ico">⚙️</span><span class="lbl">System Configuration</span><span class="n">14</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="proc">
-          <span class="ico">📊</span><span class="lbl">Processes</span><span class="n">7</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="net">
-          <span class="ico">🌐</span><span class="lbl">Networking</span><span class="n">8</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="pkg">
-          <span class="ico">📦</span><span class="lbl">Packages</span><span class="n">7</span>
-        </button><button role="tab" class="sub-tab" aria-selected="false" data-sub="disk">
-          <span class="ico">💾</span><span class="lbl">Disk &amp; Archives</span><span class="n">8</span>
-        </button></aside>
-    <main id="content" tabindex="-1">
-      <section class="section-head">
-        <p class="eyebrow">🐧 Linux</p>
-        <h2>⚙️ System Configuration</h2>
-        <p class="intro">Inspect your machine, manage services, and configure things like hostname, time and environment variables. Most changes here need sudo.</p>
-        <div class="tips"><strong>Beginner tips</strong><ul><li>System-wide config files live in <code>/etc</code>.</li><li>Your personal shell config is <code>~/.bashrc</code> (or <code>~/.zshrc</code>). Reload with <code>source ~/.bashrc</code>.</li><li>Logs live in <code>/var/log</code> or are viewed with <code>journalctl</code>.</li></ul></div>
-        <div class="filters" role="group" aria-label="Filter by level"><button class="chip on" data-level="all">all</button><button class="chip " data-level="beginner">beginner</button><button class="chip " data-level="intermediate">intermediate</button><button class="chip " data-level="advanced">advanced</button></div>
-      </section>
-      <div class="grid"><article class="card ">
-      <header>
-        <h3><code>uname</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">Show kernel and OS information.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="uname -a">Copy</button></div>
-        <pre><code>uname -a</code></pre>
-        
+  <!-- ══ LINUX SECTION (app-driven) ══ -->
+  <div id="linux-shell">
+    <div class="layout">
+      <aside class="sub-tabs" id="sub-tabs" role="tablist" aria-label="Topics"></aside>
+      <main id="content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <!-- ══ EXPERIMENTAL SYSTEM INFO ══ -->
+  <div id="section-exp">
+    <p class="ph-eyebrow">🔬 Experimental System Info</p>
+    <h2 class="ph-section-title">Experimental Setup</h2>
+    <div class="ph-grid">
+      <div class="ph-card">
+        <h3>System Name</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>cat /etc/os-release</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">Show which Linux distribution and version you're running.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="cat /etc/os-release">Copy</button></div>
-        <pre><code>cat /etc/os-release</code></pre>
-        
+      <div class="ph-card">
+        <h3>Location</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>hostnamectl</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-intermediate">intermediate</span>
-        </div>
-      </header>
-      
-      <p class="desc">View or set the machine's hostname.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="hostnamectl
-sudo hostnamectl set-hostname my-server">Copy</button></div>
-        <pre><code>hostnamectl
-sudo hostnamectl set-hostname my-server</code></pre>
-        
+      <div class="ph-card">
+        <h3>Operating System</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>timedatectl</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-intermediate">intermediate</span>
-        </div>
-      </header>
-      
-      <p class="desc">View or set date, time and timezone.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="timedatectl
-sudo timedatectl set-timezone Europe/Berlin">Copy</button></div>
-        <pre><code>timedatectl
-sudo timedatectl set-timezone Europe/Berlin</code></pre>
-        
+      <div class="ph-card">
+        <h3>CPU</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>systemctl</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-intermediate">intermediate</span>
-        </div>
-      </header>
-      
-      <p class="desc">Start, stop, restart, enable and check services (systemd).</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="systemctl status nginx
-sudo systemctl restart nginx
-sudo systemctl enable --now ssh">Copy</button></div>
-        <pre><code>systemctl status nginx
-sudo systemctl restart nginx
-sudo systemctl enable --now ssh</code></pre>
-        
+      <div class="ph-card">
+        <h3>RAM</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>journalctl</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-intermediate">intermediate</span>
-        </div>
-      </header>
-      
-      <p class="desc">Read system and service logs.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="journalctl -u nginx --since today
-journalctl -f">Copy</button></div>
-        <pre><code>journalctl -u nginx --since today
-journalctl -f</code></pre>
-        
+      <div class="ph-card">
+        <h3>GPU</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>export</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-intermediate">intermediate</span>
-        </div>
-      </header>
-      
-      <p class="desc">Set an environment variable for the current session. Add to ~/.bashrc to make it permanent.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="export EDITOR=nano
-echo &#39;export PATH=&quot;$HOME/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc">Copy</button></div>
-        <pre><code>export EDITOR=nano
-echo 'export PATH="$HOME/bin:$PATH"' &gt;&gt; ~/.bashrc</code></pre>
-        
+      <div class="ph-card">
+        <h3>Storage</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>env / printenv</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">List environment variables.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="printenv PATH">Copy</button></div>
-        <pre><code>printenv PATH</code></pre>
-        
+      <div class="ph-card">
+        <h3>Network</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>alias</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">Create a shortcut for a long command.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="alias ll=&#39;ls -lah&#39;
-alias gs=&#39;git status&#39;">Copy</button></div>
-        <pre><code>alias ll='ls -lah'
-alias gs='git status'</code></pre>
-        
+      <div class="ph-card">
+        <h3>Setup Date</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>crontab</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-intermediate">intermediate</span>
-        </div>
-      </header>
-      
-      <p class="desc">Schedule commands to run automatically. Format: min hour day month weekday command.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="crontab -e
-# every day at 2:30
-30 2 * * * /home/alex/backup.sh">Copy</button></div>
-        <pre><code>crontab -e
-<span class="cm"># every day at 2:30</span>
-30 2 * * * /home/alex/backup.sh</code></pre>
-        
+      <div class="ph-card">
+        <h3>Notes</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>uptime</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">How long the system has been running and the load average.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="uptime">Copy</button></div>
-        <pre><code>uptime</code></pre>
-        
+    </div>
+    <div class="ph-note">📝 This section is a placeholder. Fill in your actual experimental system specs here.</div>
+  </div>
+
+  <!-- ══ MICROSCOPE INFO ══ -->
+  <div id="section-mic">
+    <p class="ph-eyebrow">🔭 Microscope Info</p>
+    <h2 class="ph-section-title">Microscope Specifications</h2>
+    <div class="ph-grid">
+      <div class="ph-card">
+        <h3>Microscope Model</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>free</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">Show memory (RAM) usage.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="free -h">Copy</button></div>
-        <pre><code>free -h</code></pre>
-        
+      <div class="ph-card">
+        <h3>Manufacturer</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card ">
-      <header>
-        <h3><code>lscpu / lsblk / lsusb</code></h3>
-        <div class="badges">
-          
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">List CPU details, block devices (disks) and USB devices.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="lscpu
-lsblk
-lsusb">Copy</button></div>
-        <pre><code>lscpu
-lsblk
-lsusb</code></pre>
-        
+      <div class="ph-card">
+        <h3>Type</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article><article class="card is-danger">
-      <header>
-        <h3><code>reboot / shutdown</code></h3>
-        <div class="badges">
-          <span class="badge danger" title="Can delete data or change your system">⚠ careful</span>
-          <span class="badge lvl-beginner">beginner</span>
-        </div>
-      </header>
-      
-      <p class="desc">Restart or power off the machine.</p>
-      <div class="code">
-        <div class="code-bar"><span>bash</span><button class="copy" data-copy="sudo reboot
-sudo shutdown -h now
-sudo shutdown -r +10">Copy</button></div>
-        <pre><code>sudo reboot
-sudo shutdown -h now
-sudo shutdown -r +10</code></pre>
-        
+      <div class="ph-card">
+        <h3>Magnification Range</h3>
+        <p class="placeholder">— to be filled in —</p>
       </div>
-    </article></div></main>
+      <div class="ph-card">
+        <h3>Objectives</h3>
+        <p class="placeholder">— to be filled in —</p>
+      </div>
+      <div class="ph-card">
+        <h3>Camera / Detector</h3>
+        <p class="placeholder">— to be filled in —</p>
+      </div>
+      <div class="ph-card">
+        <h3>Light Source</h3>
+        <p class="placeholder">— to be filled in —</p>
+      </div>
+      <div class="ph-card">
+        <h3>Software</h3>
+        <p class="placeholder">— to be filled in —</p>
+      </div>
+      <div class="ph-card">
+        <h3>Resolution</h3>
+        <p class="placeholder">— to be filled in —</p>
+      </div>
+      <div class="ph-card">
+        <h3>Location</h3>
+        <p class="placeholder">— to be filled in —</p>
+      </div>
+    </div>
+    <div class="ph-note">📝 This section is a placeholder. Fill in your actual microscope specs here.</div>
   </div>
 
   <footer>
-    <p>Tip: press <kbd>Ctrl K</kbd> or <kbd>/</kbd> to search from anywhere. Commands marked <span class="badge danger">⚠ careful</span> can delete data or change your system — double-check before running.</p>
+    <p>Tip: press <kbd>Ctrl K</kbd> or <kbd>/</kbd> to search Linux commands. Commands marked <span class="badge danger">⚠ careful</span> can delete data or change your system — double-check before running.</p>
   </footer>
 
   <script src="./data.js"></script>
   <script src="./app.js"></script>
+  <script>
+    // ── Extra-tab switching ──
+    document.querySelectorAll('.main-tab[data-panel]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // deselect all tabs
+        document.querySelectorAll('.main-tab').forEach(t => t.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
 
+        // hide Linux shell
+        document.getElementById('linux-shell').classList.add('hidden');
+        document.getElementById('search').closest('.search-wrap').style.display = 'none';
+        document.getElementById('search').closest('.hero-inner').querySelector('.legend').style.display = 'none';
 
+        // hide all placeholder sections
+        document.getElementById('section-exp').classList.remove('active');
+        document.getElementById('section-mic').classList.remove('active');
 
+        // show the right one
+        document.getElementById('section-' + btn.dataset.panel).classList.add('active');
+      });
+    });
 
-</body></html>
+    // clicking Linux tab re-shows the shell
+    document.querySelector('.main-tab[data-main="linux"]').addEventListener('click', () => {
+      document.getElementById('linux-shell').classList.remove('hidden');
+      document.getElementById('search').closest('.search-wrap').style.display = '';
+      document.getElementById('search').closest('.hero-inner').querySelector('.legend').style.display = '';
+      document.getElementById('section-exp').classList.remove('active');
+      document.getElementById('section-mic').classList.remove('active');
+    });
+
+    // set linux count after data.js loads
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.GUIDE) {
+        const linux = window.GUIDE.find(g => g.id === 'linux');
+        if (linux) {
+          const n = linux.sections.reduce((a, s) => a + s.items.length, 0);
+          document.getElementById('linux-count').textContent = n;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

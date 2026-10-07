@@ -41,11 +41,10 @@
   }
 
   function renderMainTabs() {
-    mainTabsEl.innerHTML = GUIDE.map(
-      (g) => `<button role="tab" class="main-tab tab-${g.id}" aria-selected="${!state.query && g.id === state.main}" data-main="${g.id}">
-        <span class="ico">${g.icon}</span>${esc(g.label)}<span class="count">${g.sections.reduce((n, s) => n + s.items.length, 0)}</span>
-      </button>`
-    ).join("");
+    // Only update aria-selected on existing tabs (HTML is static — extra tabs live alongside)
+    mainTabsEl.querySelectorAll("[data-main]").forEach((btn) => {
+      btn.setAttribute("aria-selected", !state.query && btn.dataset.main === state.main ? "true" : "false");
+    });
   }
 
   function renderSubTabs() {

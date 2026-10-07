@@ -25,16 +25,21 @@
       filter: drop-shadow(0 4px 16px rgba(0,0,0,.6));
     }
 
-    /* ── Extra tab colours ── */
+    /* ── Extra tab colours: always keep text visible ── */
+    .tab-exp { color: var(--muted); }
+    .tab-mic { color: var(--muted); }
+    /* override the styles.css rule that sets selected tab color to near-black */
+    .tab-exp[aria-selected="true"],
+    .tab-mic[aria-selected="true"] {
+      color: #f0f6ff !important;
+    }
     .tab-exp[aria-selected="true"] {
-      background: rgba(192, 132, 252, 0.18);
-      color: #e9d5ff !important;
-      border: 1px solid rgba(192,132,252,.35);
+      background: rgba(192, 132, 252, 0.18) !important;
+      border: 1px solid rgba(192,132,252,.4) !important;
     }
     .tab-mic[aria-selected="true"] {
-      background: rgba(103, 232, 249, 0.15);
-      color: #cffafe !important;
-      border: 1px solid rgba(103,232,249,.35);
+      background: rgba(103, 232, 249, 0.15) !important;
+      border: 1px solid rgba(103,232,249,.4) !important;
     }
 
     /* ── Placeholder sections ── */
@@ -345,10 +350,22 @@
   <script src="./app.js"></script>
   <script>
     // ── Extra-tab switching ──
+    const EXTRA_TAB_STYLES = {
+      'exp': { color: '#e9d5ff', background: 'rgba(192,132,252,0.18)', border: '1px solid rgba(192,132,252,.4)' },
+      'mic': { color: '#cffafe', background: 'rgba(103,232,249,0.15)', border: '1px solid rgba(103,232,249,.4)' },
+    };
     document.querySelectorAll('.main-tab[data-panel]').forEach(btn => {
       btn.addEventListener('click', () => {
-        // deselect all tabs
-        document.querySelectorAll('.main-tab').forEach(t => t.setAttribute('aria-selected', 'false'));
+        // deselect all tabs — clear any forced inline styles
+        document.querySelectorAll('.main-tab').forEach(t => {
+          t.setAttribute('aria-selected', 'false');
+          t.style.color = '';
+          t.style.background = '';
+          t.style.border = '';
+        });
+        // apply selected styles directly so nothing can override
+        const s = EXTRA_TAB_STYLES[btn.dataset.panel];
+        if (s) { btn.style.color = s.color; btn.style.background = s.background; btn.style.border = s.border; }
         btn.setAttribute('aria-selected', 'true');
 
         // hide Linux shell

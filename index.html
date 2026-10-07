@@ -26,10 +26,16 @@
     }
 
     /* ── Extra tab colours ── */
-    .tab-exp  { --tab-accent: #c084fc; }
-    .tab-mic  { --tab-accent: #67e8f9; }
-    .main-tab { border-bottom: 3px solid transparent; }
-    .main-tab[aria-selected="true"] { border-bottom-color: var(--tab-accent, var(--linux)); }
+    .tab-exp[aria-selected="true"] {
+      background: rgba(192, 132, 252, 0.18);
+      color: #e9d5ff !important;
+      border: 1px solid rgba(192,132,252,.35);
+    }
+    .tab-mic[aria-selected="true"] {
+      background: rgba(103, 232, 249, 0.15);
+      color: #cffafe !important;
+      border: 1px solid rgba(103,232,249,.35);
+    }
 
     /* ── Placeholder sections ── */
     #section-exp, #section-mic { display: none; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto; }

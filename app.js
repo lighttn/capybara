@@ -67,7 +67,6 @@
         <h3><code>${esc(item.cmd)}</code></h3>
         <div class="badges">
           ${item.danger ? '<span class="badge danger" title="Can delete data or change your system">⚠ careful</span>' : ""}
-          <span class="badge lvl-${item.level}">${item.level}</span>
         </div>
       </header>
       ${crumb.show ? `<p class="crumb">${esc(crumb.main)} › ${esc(crumb.sub)}</p>` : ""}
@@ -83,10 +82,7 @@
   const levelOk = (item) => state.level === "all" || item.level === state.level;
 
   function filterBar() {
-    const levels = ["all", "beginner", "intermediate", "advanced"];
-    return `<div class="filters" role="group" aria-label="Filter by level">${levels
-      .map((l) => `<button class="chip ${state.level === l ? "on" : ""}" data-level="${l}">${l}</button>`)
-      .join("")}</div>`;
+    return "";
   }
 
   function renderSection() {

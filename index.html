@@ -10,6 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
   <style>
+
+    /* ── Title row ── */
+    .title-row { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .title-bullets {
+      list-style: disc; margin: 0; padding-left: 1.3rem;
+      color: var(--muted); font-size: .9rem; line-height: 1.8;
+    }
     /* ── Capybara header mascot ── */
     .hero { position: relative; overflow: hidden; }
     .capybara-wrap {
@@ -107,8 +114,13 @@
   <header class="hero">
     <div class="hero-inner">
       <p class="prompt"><span class="user">you@capybara</span>:<span class="path">~</span>$ <span class="typed">./explore.sh</span><span class="cursor">▌</span></p>
-      <h1>Capybara 🦫</h1>
-      <p class="tagline">Linux command reference, experimental system notes, and microscope specs — all in one place.</p>
+      <div class="title-row">
+        <h1>Capybara 🦫</h1>
+        <ul class="title-bullets">
+          <li>Linux command reference</li>
+          <li>Experiment system notes</li>
+        </ul>
+      </div>
       <div class="search-wrap">
         <span class="search-icon">/</span>
         <input id="search" type="search" placeholder="Search Linux commands… e.g. copy, chmod, grep" autocomplete="off">
@@ -240,7 +252,7 @@
         <div class="cam-header">
           <div>
             <p class="cam-model">FLIR Grasshopper3</p>
-            <p class="cam-name">GS3-PGE-50S5M-C</p>
+            <p class="cam-name">GS3-PGE-60S6M-C</p>
           </div>
           <span class="cam-badge mono">Mono</span>
         </div>

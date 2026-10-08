@@ -103,6 +103,35 @@
       background: rgba(103,232,249,.12); color: #67e8f9; margin-left: .3rem;
       font-family: 'Space Grotesk', sans-serif;
     }
+    /* ── Mono comparison table ── */
+    .cam-compare { margin-top: 2rem; }
+    .cam-compare h3 {
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); margin: 0 0 .8rem; font-weight: 500;
+    }
+    .cam-compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .78rem; font-family: 'JetBrains Mono', monospace;
+    }
+    .cam-compare-table th {
+      text-align: left; padding: .5rem .8rem;
+      color: var(--muted); font-weight: 500; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .06em;
+      border-bottom: 1px solid var(--line);
+    }
+    .cam-compare-table th:not(:first-child) { text-align: center; }
+    .cam-compare-table td {
+      padding: .45rem .8rem; border-bottom: 1px solid var(--line);
+      color: var(--text); vertical-align: middle;
+    }
+    .cam-compare-table td:not(:first-child) { text-align: center; }
+    .cam-compare-table tr:last-child td { border-bottom: none; }
+    .cam-compare-table tbody tr:hover { background: rgba(255,255,255,.03); }
+    .cam-compare-table .row-label {
+      color: var(--muted); font-size: .72rem; text-transform: uppercase;
+      letter-spacing: .06em; font-family: 'Space Grotesk', sans-serif; white-space: nowrap;
+    }
+    .cam-compare-table .best { color: #67e8f9; font-weight: 600; }
     /* ── Linux section visibility ── */
     #linux-shell { display: block; }
     #linux-shell.hidden { display: none; }
@@ -277,6 +306,80 @@
       </div>
 
     </div><!-- /.cam-grid -->
+
+    <!-- Mono camera comparison -->
+    <div class="cam-compare">
+      <h3>Mono camera comparison</h3>
+      <table class="cam-compare-table">
+        <thead>
+          <tr>
+            <th>Spec</th>
+            <th>Basler acA2500-60um</th>
+            <th>Basler a2A4504-18umPRO</th>
+            <th>Allied Vision 1800 U-2050</th>
+            <th>FLIR GS3-PGE-60S6M-C</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Sensor</td>
+            <td>PYTHON 5000</td>
+            <td>IMX541 BSI</td>
+            <td>IMX183 BSI</td>
+            <td>ICX694 CCD</td>
+          </tr>
+          <tr>
+            <td class="row-label">Resolution</td>
+            <td>5 MP</td>
+            <td class="best">20.2 MP</td>
+            <td class="best">20.2 MP</td>
+            <td>6.1 MP</td>
+          </tr>
+          <tr>
+            <td class="row-label">Pixel size</td>
+            <td>4.80 μm</td>
+            <td>2.74 μm</td>
+            <td>2.40 μm</td>
+            <td class="best">4.54 μm</td>
+          </tr>
+          <tr>
+            <td class="row-label">QE (peak)</td>
+            <td>~69%</td>
+            <td>~80%</td>
+            <td class="best">~84%</td>
+            <td>~74%</td>
+          </tr>
+          <tr>
+            <td class="row-label">Spectral range</td>
+            <td>400–1000 nm</td>
+            <td>350–1000 nm</td>
+            <td class="best">300–1100 nm</td>
+            <td>380–1000 nm</td>
+          </tr>
+          <tr>
+            <td class="row-label">Frame rate</td>
+            <td class="best">60 fps</td>
+            <td>18 fps</td>
+            <td>21 fps</td>
+            <td>24 fps</td>
+          </tr>
+          <tr>
+            <td class="row-label">Bit depth</td>
+            <td>10-bit</td>
+            <td>8/10/12-bit</td>
+            <td>—</td>
+            <td class="best">14-bit</td>
+          </tr>
+          <tr>
+            <td class="row-label">Interface</td>
+            <td>USB 3.0</td>
+            <td>USB 3.0</td>
+            <td>USB 3.1</td>
+            <td>GigE PoE</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- ══ HENE CDI ══ -->

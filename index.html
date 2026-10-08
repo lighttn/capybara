@@ -132,6 +132,25 @@
       letter-spacing: .06em; font-family: 'Space Grotesk', sans-serif; white-space: nowrap;
     }
     .cam-compare-table .best { color: #67e8f9; font-weight: 600; }
+    /* ── Radar chart ── */
+    .cam-radar-wrap { margin-top: 2.5rem; }
+    .cam-radar-wrap > h3 {
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); margin: 0 0 1rem; font-weight: 500;
+    }
+    .radar-container { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .radar-legend { display: flex; flex-direction: column; gap: .4rem; flex-shrink: 0; }
+    .radar-leg-item {
+      display: flex; align-items: center; gap: .55rem;
+      background: none; border: 1px solid transparent; cursor: pointer;
+      padding: .35rem .7rem; border-radius: 8px; transition: background .15s, border-color .15s;
+      text-align: left;
+    }
+    .radar-leg-item:hover { background: rgba(255,255,255,.06); border-color: var(--line); }
+    .radar-leg-item .leg-label {
+      font-size: .76rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
+    }
+    .radar-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
     /* ── Linux section visibility ── */
     #linux-shell { display: block; }
     #linux-shell.hidden { display: none; }
@@ -380,6 +399,146 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Radar chart -->
+    <div class="cam-radar-wrap">
+      <h3>Spec radar — mono cameras</h3>
+      <div class="radar-container">
+        <canvas id="cam-radar"></canvas>
+        <div class="radar-legend" id="radar-legend"></div>
+      </div>
+    </div>
+    <script>
+    (function () {
+      const dpr = window.devicePixelRatio || 1;
+      const canvas = document.getElementById('cam-radar');
+      const W = 460, H = 360;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      // Normalized: [Resolution, QE, Frame rate, Pixel size, Spectral range]
+      // Higher = better for all axes
+      const maxVals = [20.2, 84, 60, 4.80, 800];
+      const rawVals = {
+        labels: ['Resolution\n(MP)', 'QE\n(peak)', 'Frame rate\n(fps)', 'Pixel size\n(µm)', 'Spectral\nrange (nm)'],
+        units:  ['MP',              '%',          'fps',               'µm',               'nm'],
+        raws:   [[5, 20.2, 20.2, 6.1], [69, 80, 84, 74], [60, 18, 21, 24], [4.80, 2.74, 2.40, 4.54], [600, 650, 800, 620]],
+      };
+
+      const cams = [
+        { name: 'Basler acA2500-60um',      color: '#67e8f9', vals: [5/20.2,    69/84, 60/60, 4.80/4.80, 600/800] },
+        { name: 'a2A4504-18umPRO',          color: '#a78bfa', vals: [20.2/20.2, 80/84, 18/60, 2.74/4.80, 650/800] },
+        { name: 'AV 1800 U-2050',           color: '#86efac', vals: [20.2/20.2, 84/84, 21/60, 2.40/4.80, 800/800] },
+        { name: 'FLIR GS3-PGE-60S6M-C',    color: '#fca5a5', vals: [6.1/20.2,  74/84, 24/60, 4.54/4.80, 620/800] },
+      ];
+
+      const N = 5;
+      const cx = W * 0.46, cy = H * 0.51;
+      const R  = Math.min(W, H) * 0.33;
+
+      function angle(i) { return (i / N) * 2 * Math.PI - Math.PI / 2; }
+      function pt(val, i) {
+        const a = angle(i);
+        return { x: cx + val * R * Math.cos(a), y: cy + val * R * Math.sin(a) };
+      }
+      function hexToRgb(hex) {
+        return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)];
+      }
+
+      function drawGrid() {
+        // Rings
+        [0.25, 0.5, 0.75, 1.0].forEach((r, ri) => {
+          ctx.beginPath();
+          for (let i = 0; i < N; i++) {
+            const p = pt(r, i);
+            i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+          }
+          ctx.closePath();
+          ctx.strokeStyle = ri === 3 ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)';
+          ctx.lineWidth = ri === 3 ? 1 : 0.5;
+          ctx.stroke();
+        });
+        // Spokes
+        for (let i = 0; i < N; i++) {
+          const p = pt(1.0, i);
+          ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y);
+          ctx.strokeStyle = 'rgba(255,255,255,0.1)'; ctx.lineWidth = 0.5; ctx.stroke();
+        }
+        // 50% label
+        ctx.fillStyle = 'rgba(148,163,184,0.45)';
+        ctx.font = '9px monospace';
+        ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+        const mid = pt(0.5, 0);
+        ctx.fillText('50%', mid.x + 4, mid.y);
+        // Axis labels
+        rawVals.labels.forEach((label, i) => {
+          const a = angle(i);
+          const lx = cx + (R + 34) * Math.cos(a);
+          const ly = cy + (R + 34) * Math.sin(a);
+          const lines = label.split('\n');
+          const ac = Math.abs(Math.cos(a));
+          ctx.textAlign = ac < 0.12 ? 'center' : Math.cos(a) > 0 ? 'left' : 'right';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = '10.5px "Space Grotesk", system-ui, sans-serif';
+          lines.forEach((line, li) => {
+            ctx.fillText(line, lx, ly + (li - (lines.length - 1) / 2) * 13);
+          });
+        });
+      }
+
+      function drawCam(cam, hl) {
+        const [r, g, b] = hexToRgb(cam.color);
+        const fillA = hl === true ? 0.22 : hl === null ? 0.08 : 0.03;
+        const strokeA = hl === true ? 1.0 : hl === null ? 0.75 : 0.15;
+        ctx.beginPath();
+        cam.vals.forEach((v, i) => {
+          const p = pt(v, i);
+          i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        });
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${r},${g},${b},${fillA})`;
+        ctx.fill();
+        ctx.globalAlpha = strokeA;
+        ctx.strokeStyle = cam.color;
+        ctx.lineWidth = hl === true ? 2.2 : 1.6;
+        ctx.stroke();
+        cam.vals.forEach((v, i) => {
+          const p = pt(v, i);
+          ctx.beginPath(); ctx.arc(p.x, p.y, hl === true ? 4.5 : 3, 0, 2 * Math.PI);
+          ctx.fillStyle = cam.color; ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      let hovered = null;
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        drawGrid();
+        // Draw non-hovered first, hovered last (on top)
+        cams.forEach((cam, i) => { if (i !== hovered) drawCam(cam, hovered === null ? null : false); });
+        if (hovered !== null) drawCam(cams[hovered], true);
+      }
+
+      draw();
+
+      // Legend
+      const legendEl = document.getElementById('radar-legend');
+      cams.forEach((cam, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'radar-leg-item';
+        btn.innerHTML = `<span class="radar-dot" style="background:${cam.color};box-shadow:0 0 6px ${cam.color}55"></span><span class="leg-label">${cam.name}</span>`;
+        btn.addEventListener('mouseenter', () => { hovered = i; draw(); });
+        btn.addEventListener('mouseleave', () => { hovered = null; draw(); });
+        legendEl.appendChild(btn);
+      });
+    })();
+    </script>
   </div>
 
   <!-- ══ HENE CDI ══ -->

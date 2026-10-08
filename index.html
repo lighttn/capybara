@@ -114,9 +114,6 @@
         <input id="search" type="search" placeholder="Search Linux commands… e.g. copy, chmod, grep" autocomplete="off">
         <kbd>Ctrl K</kbd>
       </div>
-      <div class="legend">
-        <span class="badge danger">⚠ careful</span>
-      </div>
     </div>
 
     <!-- capybara photo -->
@@ -349,7 +346,6 @@
         // hide Linux shell
         document.getElementById('linux-shell').classList.add('hidden');
         document.getElementById('search').closest('.search-wrap').style.display = 'none';
-        document.getElementById('search').closest('.hero-inner').querySelector('.legend').style.display = 'none';
 
         // hide all placeholder sections, show the right one
         hideAllPanels();
@@ -361,7 +357,6 @@
     document.querySelector('.main-tab[data-main="linux"]').addEventListener('click', () => {
       document.getElementById('linux-shell').classList.remove('hidden');
       document.getElementById('search').closest('.search-wrap').style.display = '';
-      document.getElementById('search').closest('.hero-inner').querySelector('.legend').style.display = '';
       hideAllPanels();
     });
 

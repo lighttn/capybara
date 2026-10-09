@@ -156,6 +156,28 @@
     .link-url  { font-size: .72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .link-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; margin-top: .1rem; }
+    /* ── Journal list (line format) ── */
+    .journal-list { display: flex; flex-direction: column; }
+    .jpub-group {
+      font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+      color: #fde68a; opacity: .7; margin: 1rem 0 .25rem .3rem; padding: 0;
+    }
+    .jpub-group:first-child { margin-top: .2rem; }
+    .journal-row {
+      display: grid;
+      grid-template-columns: 14rem 1fr;
+      align-items: center; gap: .5rem 1.2rem;
+      padding: .52rem .3rem; border-bottom: 1px solid var(--line);
+      text-decoration: none; transition: background .15s; border-radius: 4px;
+    }
+    .journal-row:last-child { border-bottom: none; }
+    .journal-row:hover { background: rgba(103,232,249,.05); }
+    .jname {
+      font-size: .85rem; font-weight: 600; color: var(--text);
+      font-family: 'Space Grotesk', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .journal-row:hover .jname { color: #67e8f9; }
+    .jdesc { font-size: .78rem; color: var(--muted); line-height: 1.4; }
     /* ── Radar chart ── */
     .cam-radar-wrap { margin-top: 2.5rem; }
     .cam-radar-wrap > h3 {
@@ -224,7 +246,7 @@
       <span class="ico">🌈</span>HyperSelect
     </button>
     <button role="tab" class="main-tab tab-links" aria-selected="false" data-panel="links">
-      <span class="ico">🔗</span>참고 링크
+      <span class="ico">🔗</span>Links
     </button>
   </nav>
 
@@ -621,7 +643,7 @@
 
   <!-- ══ LINKS ══ -->
   <div id="section-links">
-    <p class="ph-eyebrow">🔗 참고 링크</p>
+    <p class="ph-eyebrow">🔗 Links</p>
     <h2 class="ph-section-title">Reference Links</h2>
 
     <div class="links-section">
@@ -657,71 +679,59 @@
 
     <div class="links-section">
       <p class="links-section-title">Optics &amp; Photonics Journals</p>
-      <div class="links-grid">
-        <a class="link-card" href="https://opg.optica.org/oe/home.cfm" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">Optics Express</span></div>
-          <div class="link-url">opg.optica.org/oe</div>
-          <div class="link-desc">Open-access, high-impact journal covering all aspects of optics and photonics. Published by Optica (formerly OSA).</div>
+      <div class="journal-list">
+        <p class="jpub-group">Optica Publishing</p>
+        <a class="journal-row" href="https://opg.optica.org/oe/home.cfm" target="_blank" rel="noopener">
+          <span class="jname">Optics Express</span><span class="jdesc">All aspects of optics &amp; photonics — open-access, high-impact</span>
         </a>
-        <a class="link-card" href="https://opg.optica.org/ol/home.cfm" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">Optics Letters</span></div>
-          <div class="link-url">opg.optica.org/ol</div>
-          <div class="link-desc">Rapid communications on the latest discoveries in optics. Short-format letters with fast peer review. Optica Publishing.</div>
+        <a class="journal-row" href="https://opg.optica.org/ol/home.cfm" target="_blank" rel="noopener">
+          <span class="jname">Optics Letters</span><span class="jdesc">Rapid short-format communications, fast peer review</span>
         </a>
-        <a class="link-card" href="https://opg.optica.org/ao/home.cfm" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">Applied Optics</span></div>
-          <div class="link-url">opg.optica.org/ao</div>
-          <div class="link-desc">Applications of optics and photonics in science and engineering, including imaging systems and instrumentation.</div>
+        <a class="journal-row" href="https://opg.optica.org/ao/home.cfm" target="_blank" rel="noopener">
+          <span class="jname">Applied Optics</span><span class="jdesc">Optical systems, instrumentation &amp; engineering applications</span>
         </a>
-        <a class="link-card" href="https://www.nature.com/nphoton/" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">🌿</span><span class="link-name">Nature Photonics</span></div>
-          <div class="link-url">nature.com/nphoton</div>
-          <div class="link-desc">High-impact journal publishing breakthrough research in photonics and optics. Nature portfolio.</div>
+        <a class="journal-row" href="https://opg.optica.org/josaa/home.cfm" target="_blank" rel="noopener">
+          <span class="jname">JOSA A</span><span class="jdesc">Image science, vision, wave optics &amp; computational imaging</span>
         </a>
-        <a class="link-card" href="https://www.nature.com/lsa/" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">🌿</span><span class="link-name">Light: Science &amp; Applications</span></div>
-          <div class="link-url">nature.com/lsa</div>
-          <div class="link-desc">Open-access journal from the Nature portfolio covering all areas of light science and applications. High-impact and broad scope.</div>
+        <a class="journal-row" href="https://opg.optica.org/josab/home.cfm" target="_blank" rel="noopener">
+          <span class="jname">JOSA B</span><span class="jdesc">Laser physics, nonlinear &amp; ultrafast optics, quantum coherence</span>
         </a>
-        <a class="link-card" href="https://onlinelibrary.wiley.com/journal/18638899" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📗</span><span class="link-name">Laser &amp; Photonics Reviews</span></div>
-          <div class="link-url">onlinelibrary.wiley.com</div>
-          <div class="link-desc">Review and research articles on laser science and photonics technologies. Wiley-VCH, strong for coherent imaging topics.</div>
+
+        <p class="jpub-group">Nature Portfolio</p>
+        <a class="journal-row" href="https://www.nature.com/nphoton/" target="_blank" rel="noopener">
+          <span class="jname">Nature Photonics</span><span class="jdesc">Breakthrough research across all photonics — highest-impact</span>
         </a>
-        <a class="link-card" href="https://iopscience.iop.org/journal/2040-8986" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📘</span><span class="link-name">Journal of Optics</span></div>
-          <div class="link-url">iopscience.iop.org</div>
-          <div class="link-desc">IOP Publishing journal covering theoretical and experimental optics, including wave optics, coherence, and imaging.</div>
+        <a class="journal-row" href="https://www.nature.com/lsa/" target="_blank" rel="noopener">
+          <span class="jname">Light: Science &amp; Applications</span><span class="jdesc">Open-access, broad scope, light science &amp; technology</span>
         </a>
-        <a class="link-card" href="https://www.spiedigitallibrary.org/journals/journal-of-biomedical-optics" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📙</span><span class="link-name">SPIE — J. Biomedical Optics</span></div>
-          <div class="link-url">spiedigitallibrary.org</div>
-          <div class="link-desc">SPIE journal bridging optics and biomedical imaging. Relevant for microscopy, spectral imaging, and tissue optics.</div>
+
+        <p class="jpub-group">Wiley-VCH</p>
+        <a class="journal-row" href="https://onlinelibrary.wiley.com/journal/18638899" target="_blank" rel="noopener">
+          <span class="jname">Laser &amp; Photonics Reviews</span><span class="jdesc">Reviews &amp; research in laser science, strong for coherent imaging</span>
         </a>
-        <a class="link-card" href="https://pubs.acs.org/journal/apchd5" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">🔬</span><span class="link-name">ACS Photonics</span></div>
-          <div class="link-url">pubs.acs.org/journal/apchd5</div>
-          <div class="link-desc">ACS journal on photonics fundamentals and applications — nanophotonics, plasmonics, quantum optics, and ultrafast phenomena.</div>
+        <a class="journal-row" href="https://onlinelibrary.wiley.com/journal/21951071" target="_blank" rel="noopener">
+          <span class="jname">Advanced Optical Materials</span><span class="jdesc">Metamaterials, 2D materials, active &amp; functional optical media</span>
         </a>
-        <a class="link-card" href="https://pubs.acs.org/journal/aaoma6" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">🔬</span><span class="link-name">ACS Applied Optical Materials</span></div>
-          <div class="link-url">pubs.acs.org/journal/aaoma6</div>
-          <div class="link-desc">ACS journal focused on materials for optical applications — coatings, filters, waveguides, and functional optical materials.</div>
+
+        <p class="jpub-group">ACS Publications</p>
+        <a class="journal-row" href="https://pubs.acs.org/journal/apchd5" target="_blank" rel="noopener">
+          <span class="jname">ACS Photonics</span><span class="jdesc">Nanophotonics, plasmonics, quantum optics &amp; ultrafast phenomena</span>
         </a>
-        <a class="link-card" href="https://onlinelibrary.wiley.com/journal/21951071" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📗</span><span class="link-name">Advanced Optical Materials</span></div>
-          <div class="link-url">onlinelibrary.wiley.com</div>
-          <div class="link-desc">Wiley-VCH journal on optical properties and applications of new materials — metamaterials, 2D materials, active optical media.</div>
+        <a class="journal-row" href="https://pubs.acs.org/journal/aaoma6" target="_blank" rel="noopener">
+          <span class="jname">ACS Applied Optical Materials</span><span class="jdesc">Coatings, filters, waveguides &amp; functional optical materials</span>
         </a>
-        <a class="link-card" href="https://opg.optica.org/josaa/home.cfm" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">JOSA A</span></div>
-          <div class="link-url">opg.optica.org/josaa</div>
-          <div class="link-desc">Journal of the Optical Society of America A — image science, vision science, and wave optics. Classical and computational imaging.</div>
+
+        <p class="jpub-group">IOP Publishing</p>
+        <a class="journal-row" href="https://iopscience.iop.org/journal/2040-8986" target="_blank" rel="noopener">
+          <span class="jname">Journal of Optics</span><span class="jdesc">Theoretical &amp; experimental optics, coherence &amp; imaging</span>
         </a>
-        <a class="link-card" href="https://opg.optica.org/josab/home.cfm" target="_blank" rel="noopener">
-          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">JOSA B</span></div>
-          <div class="link-url">opg.optica.org/josab</div>
-          <div class="link-desc">Journal of the Optical Society of America B — laser physics, nonlinear optics, ultrafast optics, and quantum coherence.</div>
+
+        <p class="jpub-group">SPIE Digital Library</p>
+        <a class="journal-row" href="https://www.spiedigitallibrary.org/journals/journal-of-biomedical-optics" target="_blank" rel="noopener">
+          <span class="jname">J. Biomedical Optics</span><span class="jdesc">Microscopy, spectral imaging &amp; tissue optics</span>
+        </a>
+        <a class="journal-row" href="https://www.spiedigitallibrary.org/journals/journal-of-micro-nanolithography-mems-and-moems" target="_blank" rel="noopener">
+          <span class="jname">JM3 — J. Micro/Nanolithography</span><span class="jdesc">Micro/nanofabrication, MEMS, MOEMS &amp; lithography techniques</span>
         </a>
       </div>
     </div>

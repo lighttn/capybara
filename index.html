@@ -33,13 +33,13 @@
     }
 
     /* ── Extra tab colours: always keep text visible ── */
-    .tab-cam, .tab-hene, .tab-hypercom, .tab-hyperselect { color: var(--muted); }
+    .tab-cam, .tab-hene, .tab-hypercom, .tab-hyperselect, .tab-links { color: var(--muted); }
 
     /* ── Placeholder sections ── */
-    #section-cam, #section-hene, #section-hypercom, #section-hyperselect {
+    #section-cam, #section-hene, #section-hypercom, #section-hyperselect, #section-links {
       display: none; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto;
     }
-    #section-cam.active, #section-hene.active, #section-hypercom.active, #section-hyperselect.active { display: block; }
+    #section-cam.active, #section-hene.active, #section-hypercom.active, #section-hyperselect.active, #section-links.active { display: block; }
     .ph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
     .ph-card {
       background: var(--surface);
@@ -132,6 +132,30 @@
       letter-spacing: .06em; font-family: 'Space Grotesk', sans-serif; white-space: nowrap;
     }
     .cam-compare-table .best { color: #67e8f9; font-weight: 600; }
+    /* ── Reference links ── */
+    .links-section { margin-bottom: 2.2rem; }
+    .links-section-title {
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--muted); margin: 0 0 .9rem; font-weight: 500; padding-bottom: .4rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .links-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .85rem;
+    }
+    .link-card {
+      display: flex; flex-direction: column; gap: .35rem;
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 10px; padding: .9rem 1.1rem;
+      text-decoration: none; transition: border-color .2s, background .2s;
+      cursor: pointer;
+    }
+    .link-card:hover { border-color: var(--linux); background: rgba(103,232,249,.04); }
+    .link-card-top { display: flex; align-items: center; gap: .6rem; }
+    .link-icon { font-size: 1.2rem; flex-shrink: 0; line-height: 1; }
+    .link-name { font-size: .9rem; font-weight: 600; color: var(--text); font-family: 'Space Grotesk', sans-serif; }
+    .link-url  { font-size: .72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
+                 white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .link-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; margin-top: .1rem; }
     /* ── Radar chart ── */
     .cam-radar-wrap { margin-top: 2.5rem; }
     .cam-radar-wrap > h3 {
@@ -198,6 +222,9 @@
     </button>
     <button role="tab" class="main-tab tab-hyperselect" aria-selected="false" data-panel="hyperselect">
       <span class="ico">🌈</span>HyperSelect
+    </button>
+    <button role="tab" class="main-tab tab-links" aria-selected="false" data-panel="links">
+      <span class="ico">🔗</span>참고 링크
     </button>
   </nav>
 
@@ -592,6 +619,89 @@
     <div class="ph-note">📝 HyperSelect system specifications placeholder.</div>
   </div>
 
+  <!-- ══ LINKS ══ -->
+  <div id="section-links">
+    <p class="ph-eyebrow">🔗 참고 링크</p>
+    <h2 class="ph-section-title">Reference Links</h2>
+
+    <div class="links-section">
+      <p class="links-section-title">Scientific Computing &amp; Simulation</p>
+      <div class="links-grid">
+        <a class="link-card" href="https://www.h5py.org/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🗄️</span><span class="link-name">h5py</span></div>
+          <div class="link-url">h5py.org</div>
+          <div class="link-desc">HDF5 for Python — read/write large scientific datasets efficiently. Essential for saving simulation results and camera data.</div>
+        </a>
+        <a class="link-card" href="https://anaconda.org/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🐍</span><span class="link-name">Anaconda</span></div>
+          <div class="link-url">anaconda.org</div>
+          <div class="link-desc">Python/R distribution for data science and scientific computing. Manages packages and environments for reproducible workflows.</div>
+        </a>
+        <a class="link-card" href="https://www.docker.com/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🐳</span><span class="link-name">Docker</span></div>
+          <div class="link-url">docker.com</div>
+          <div class="link-desc">Containerization platform. Package experiments and simulations into portable containers that run identically across machines.</div>
+        </a>
+        <a class="link-card" href="https://meep.readthedocs.io/en/latest/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🔴</span><span class="link-name">MEEP</span></div>
+          <div class="link-url">meep.readthedocs.io</div>
+          <div class="link-desc">MIT FDTD electromagnetic simulation software. Simulates light propagation, scattering, and diffraction at micro/nanoscale.</div>
+        </a>
+        <a class="link-card" href="https://developer.nvidia.com/cuda/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">⚡</span><span class="link-name">NVIDIA CUDA</span></div>
+          <div class="link-url">developer.nvidia.com/cuda</div>
+          <div class="link-desc">GPU-accelerated parallel computing platform. Dramatically speeds up image processing, reconstruction, and deep learning.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="links-section">
+      <p class="links-section-title">Optics &amp; Photonics Journals</p>
+      <div class="links-grid">
+        <a class="link-card" href="https://opg.optica.org/oe/home.cfm" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">Optics Express</span></div>
+          <div class="link-url">opg.optica.org/oe</div>
+          <div class="link-desc">Open-access, high-impact journal covering all aspects of optics and photonics. Published by Optica (formerly OSA).</div>
+        </a>
+        <a class="link-card" href="https://opg.optica.org/ol/home.cfm" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">Optics Letters</span></div>
+          <div class="link-url">opg.optica.org/ol</div>
+          <div class="link-desc">Rapid communications on the latest discoveries in optics. Short-format letters with fast peer review. Optica Publishing.</div>
+        </a>
+        <a class="link-card" href="https://opg.optica.org/ao/home.cfm" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📖</span><span class="link-name">Applied Optics</span></div>
+          <div class="link-url">opg.optica.org/ao</div>
+          <div class="link-desc">Applications of optics and photonics in science and engineering, including imaging systems and instrumentation.</div>
+        </a>
+        <a class="link-card" href="https://www.nature.com/nphoton/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🌿</span><span class="link-name">Nature Photonics</span></div>
+          <div class="link-url">nature.com/nphoton</div>
+          <div class="link-desc">High-impact journal publishing breakthrough research in photonics and optics. Nature portfolio.</div>
+        </a>
+        <a class="link-card" href="https://www.nature.com/lsa/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🌿</span><span class="link-name">Light: Science &amp; Applications</span></div>
+          <div class="link-url">nature.com/lsa</div>
+          <div class="link-desc">Open-access journal from the Nature portfolio covering all areas of light science and applications. High-impact and broad scope.</div>
+        </a>
+        <a class="link-card" href="https://onlinelibrary.wiley.com/journal/18638899" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📗</span><span class="link-name">Laser &amp; Photonics Reviews</span></div>
+          <div class="link-url">onlinelibrary.wiley.com</div>
+          <div class="link-desc">Review and research articles on laser science and photonics technologies. Wiley-VCH, strong for coherent imaging topics.</div>
+        </a>
+        <a class="link-card" href="https://iopscience.iop.org/journal/2040-8986" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📘</span><span class="link-name">Journal of Optics</span></div>
+          <div class="link-url">iopscience.iop.org</div>
+          <div class="link-desc">IOP Publishing journal covering theoretical and experimental optics, including wave optics, coherence, and imaging.</div>
+        </a>
+        <a class="link-card" href="https://www.spiedigitallibrary.org/journals/journal-of-biomedical-optics" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📙</span><span class="link-name">SPIE — J. Biomedical Optics</span></div>
+          <div class="link-url">spiedigitallibrary.org</div>
+          <div class="link-desc">SPIE journal bridging optics and biomedical imaging. Relevant for microscopy, spectral imaging, and tissue optics.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>Tip: press <kbd>Ctrl K</kbd> or <kbd>/</kbd> to search Linux commands. Commands marked <span class="badge danger">⚠ careful</span> can delete data or change your system — double-check before running.</p>
   </footer>
@@ -600,12 +710,13 @@
   <script src="./app.js"></script>
   <script>
     // ── Extra-tab switching ──
-    const EXTRA_PANELS = ['cam', 'hene', 'hypercom', 'hyperselect'];
+    const EXTRA_PANELS = ['cam', 'hene', 'hypercom', 'hyperselect', 'links'];
     const EXTRA_TAB_STYLES = {
       'cam':         { color: '#cffafe', background: 'rgba(103,232,249,0.15)', border: '1px solid rgba(103,232,249,.4)' },
       'hene':        { color: '#fecaca', background: 'rgba(252,100,100,0.15)', border: '1px solid rgba(252,100,100,.4)' },
       'hypercom':    { color: '#e9d5ff', background: 'rgba(192,132,252,0.18)', border: '1px solid rgba(192,132,252,.4)' },
       'hyperselect': { color: '#bbf7d0', background: 'rgba(100,232,150,0.15)', border: '1px solid rgba(100,232,150,.4)' },
+      'links':       { color: '#fde68a', background: 'rgba(253,230,138,0.12)', border: '1px solid rgba(253,230,138,.4)' },
     };
 
     function hideAllPanels() {

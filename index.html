@@ -33,13 +33,13 @@
     }
 
     /* ── Extra tab colours: always keep text visible ── */
-    .tab-cam, .tab-hene, .tab-hypercom, .tab-hyperselect, .tab-links { color: var(--muted); }
+    .tab-cam, .tab-hene, .tab-hypercom, .tab-hyperselect, .tab-links, .tab-python { color: var(--muted); }
 
     /* ── Placeholder sections ── */
-    #section-cam, #section-hene, #section-hypercom, #section-hyperselect, #section-links {
+    #section-cam, #section-hene, #section-hypercom, #section-hyperselect, #section-links, #section-python {
       display: none; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto;
     }
-    #section-cam.active, #section-hene.active, #section-hypercom.active, #section-hyperselect.active, #section-links.active { display: block; }
+    #section-cam.active, #section-hene.active, #section-hypercom.active, #section-hyperselect.active, #section-links.active, #section-python.active { display: block; }
     .ph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
     .ph-card {
       background: var(--surface);
@@ -81,6 +81,8 @@
     }
     .cam-model { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 .2rem; }
     .cam-name  { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
+    .cam-sensor { font-size: .7rem; color: var(--muted); margin: .18rem 0 0; font-family: 'Space Grotesk', sans-serif; opacity: .75; }
+    .cam-sensor { font-size: .7rem; color: var(--muted); margin: .18rem 0 0; font-family: 'Space Grotesk', sans-serif; opacity: .75; }
     .cam-badge {
       flex-shrink: 0; font-size: .68rem; font-weight: 600;
       padding: .18rem .55rem; border-radius: 20px;
@@ -156,18 +158,51 @@
     .link-url  { font-size: .72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .link-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; margin-top: .1rem; }
+    /* ── Python tips ── */
+    .py-section { margin-bottom: 2rem; }
+    .py-section-title {
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
+      color: #fcd34d; opacity: .8; margin: 0 0 .9rem; font-weight: 600; padding-bottom: .4rem;
+      border-bottom: 1px solid rgba(253,211,77,.2);
+    }
+    .py-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .85rem;
+    }
+    .py-card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 10px; padding: .9rem 1.1rem;
+      transition: border-color .2s;
+    }
+    .py-card:hover { border-color: rgba(253,211,77,.4); }
+    .py-label {
+      font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
+      color: #fcd34d; opacity: .75; margin: 0 0 .55rem; font-weight: 600;
+    }
+    .py-code {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+      color: var(--text); background: rgba(0,0,0,.25);
+      border-radius: 6px; padding: .65rem .8rem; margin: 0;
+      overflow-x: auto; white-space: pre; line-height: 1.6;
+      border: 1px solid var(--line);
+    }
     /* ── Journal list (line format) ── */
     .journal-list { display: flex; flex-direction: column; }
     .jpub-group {
+      display: flex; align-items: center; gap: .5rem;
       font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
       color: #fde68a; opacity: .7; margin: 1rem 0 .25rem .3rem; padding: 0;
     }
     .jpub-group:first-child { margin-top: .2rem; }
+    .jlogo {
+      width: 18px; height: 18px; border-radius: 4px;
+      object-fit: contain; background: rgba(255,255,255,.06);
+      flex-shrink: 0; display: block;
+    }
     .journal-row {
       display: grid;
       grid-template-columns: 14rem 1fr;
       align-items: center; gap: .5rem 1.2rem;
-      padding: .52rem .3rem; border-bottom: 1px solid var(--line);
+      padding: .52rem .3rem .52rem 1.6rem; border-bottom: 1px solid var(--line);
       text-decoration: none; transition: background .15s; border-radius: 4px;
     }
     .journal-row:last-child { border-bottom: none; }
@@ -178,6 +213,16 @@
     }
     .journal-row:hover .jname { color: #67e8f9; }
     .jdesc { font-size: .78rem; color: var(--muted); line-height: 1.4; }
+    /* ── QE curve chart ── */
+    .qe-wrap { margin-top: 2.5rem; }
+    .qe-wrap > h3 {
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); margin: 0 0 .3rem; font-weight: 500;
+    }
+    .qe-note { font-size: .7rem; color: var(--muted); margin: 0 0 1rem; opacity: .6; }
+    .qe-container { display: flex; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+    #qe-canvas { cursor: crosshair; flex-shrink: 0; }
+    .qe-legend { display: flex; flex-direction: column; gap: .4rem; flex-shrink: 0; }
     /* ── Radar chart ── */
     .cam-radar-wrap { margin-top: 2.5rem; }
     .cam-radar-wrap > h3 {
@@ -200,6 +245,59 @@
     /* ── Linux section visibility ── */
     #linux-shell { display: block; }
     #linux-shell.hidden { display: none; }
+
+    /* ══ RESPONSIVE — mobile (≤640px) ══ */
+    @media (max-width: 640px) {
+
+      /* Header: hide capybara photo, give header more room */
+      .capybara-wrap { display: none; }
+
+      /* Title layout: stack vertically */
+      .title-row { flex-direction: column; gap: .8rem; }
+
+      /* Tab bar: horizontal scroll on one line */
+      .tab-list {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: .35rem;
+        padding-bottom: .3rem;
+        scrollbar-width: none;
+      }
+      .tab-list::-webkit-scrollbar { display: none; }
+      .main-tab { white-space: nowrap; flex-shrink: 0; }
+
+      /* Section padding */
+      #section-cam, #section-hene, #section-hypercom,
+      #section-hyperselect, #section-links, #section-python {
+        padding: 1.2rem .9rem;
+      }
+
+      /* Camera cards: single column */
+      .cam-grid { grid-template-columns: 1fr; }
+
+      /* Comparison table: horizontal scroll */
+      .cam-compare { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .cam-compare-table { min-width: 520px; }
+
+      /* Radar + QE: stack chart + legend vertically */
+      .radar-container, .qe-container { flex-direction: column; gap: 1rem; }
+      #cam-radar, #qe-canvas { max-width: 100% !important; }
+      .radar-legend, .qe-legend { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+
+      /* Journal rows: stack name + desc vertically */
+      .journal-row {
+        grid-template-columns: 1fr;
+        gap: .15rem;
+        padding-left: 1.6rem;
+      }
+      .jname { white-space: normal; }
+
+      /* Link cards: single column */
+      .links-grid { grid-template-columns: 1fr; }
+      .py-grid { grid-template-columns: 1fr; }
+      .py-code { font-size: .65rem; }
+    }
   </style>
 </head>
 <body>
@@ -232,6 +330,9 @@
   <nav class="main-tabs" role="tablist" aria-label="Main sections" id="main-tabs">
     <button role="tab" class="main-tab tab-linux" aria-selected="true" data-main="linux">
       <span class="ico">🐧</span>Linux<span class="count" id="linux-count"></span>
+    </button>
+    <button role="tab" class="main-tab tab-python" aria-selected="false" data-panel="python">
+      <span class="ico">🐍</span>Python
     </button>
     <button role="tab" class="main-tab tab-cam" aria-selected="false" data-panel="cam">
       <span class="ico">📷</span>Cam info
@@ -277,7 +378,7 @@
         <div class="cam-specs">
           <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">5 MP <span class="cam-tag">2592 × 1944</span></span></div>
           <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">4.80 μm</span></div>
-          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">PYTHON 5000</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">MT9P031</span></div>
           <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">60 fps</span></div>
           <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">10-bit</span></div>
           <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">56.8 dB</span></div>
@@ -461,7 +562,9 @@
     (function () {
       const dpr = window.devicePixelRatio || 1;
       const canvas = document.getElementById('cam-radar');
-      const W = 460, H = 360;
+      const isMobile = window.innerWidth <= 640;
+      const W = isMobile ? Math.min(window.innerWidth - 36, 340) : 460;
+      const H = isMobile ? Math.round(W * 0.78) : 360;
       canvas.width = W * dpr;
       canvas.height = H * dpr;
       canvas.style.width = W + 'px';
@@ -588,6 +691,225 @@
       });
     })();
     </script>
+
+    <!-- QE curve chart -->
+    <div class="qe-wrap">
+      <h3>QE vs Wavelength — sensor comparison</h3>
+      <p class="qe-note">acA2500: MT9P031 datasheet (digitised) · FLIR: ICX694 relative sensitivity (unscaled) · others: approximate</p>
+      <div class="qe-container">
+        <canvas id="qe-canvas"></canvas>
+        <div class="qe-legend" id="qe-legend"></div>
+      </div>
+    </div>
+    <script>
+    (function () {
+      // QE data [wavelength_nm, qe_%] pairs
+      const sensors = [
+        {
+          name: 'Basler acA2500-60um', sensor: 'MT9P031',
+          color: '#67e8f9',
+          // Digitised from MT9P031 Edmund Optics datasheet
+          data: [
+            [400,38],[410,39],[420,40],[430,44],[440,49],[450,50],[460,57],
+            [470,51],[475,55],[480,58],[490,62],[495,60],[500,62],[505,64],
+            [510,65],[515,63],[520,64],[525,65],[530,63],[535,61],[540,60],
+            [545,62],[550,64],[555,65],[560,65],[565,63],[570,63],[575,63],
+            [580,62],[585,62],[590,60],[595,58],[600,57],[610,48],[620,50],
+            [630,52],[640,57],[650,57],[660,56],[670,54],[680,52],[690,50],
+            [700,51],[710,53],[720,52],[730,49],[740,46],[750,47],[760,45],
+            [770,47],[780,46],[790,46],[800,44],[810,35],[820,34],[830,34],
+            [840,33],[850,35],[860,34],[870,28],[880,25],[890,23],[900,22],
+            [920,19],[940,14],[960,11],[980,8],[1000,5]
+          ]
+        },
+        {
+          name: 'a2A4504-18umPRO', sensor: 'IMX541',
+          color: '#a78bfa',
+          // IMX541 BSI — approximate from Sony/Basler spec (~80% peak)
+          data: [
+            [400,42],[420,52],[440,62],[460,68],[480,74],[500,79],[520,80],
+            [540,79],[560,77],[580,75],[600,73],[620,70],[640,67],[660,64],
+            [680,59],[700,53],[720,46],[740,40],[760,35],[780,29],[800,23],
+            [820,17],[840,12],[860,8],[880,5],[900,3],[920,2],[940,1],[960,0.5],[980,0.2],[1000,0.1]
+          ]
+        },
+        {
+          name: 'AV 1800 U-2050', sensor: 'IMX183',
+          color: '#86efac',
+          // IMX183 (Sony, ~84% peak) — approximate
+          data: [
+            [400,45],[420,55],[440,66],[460,73],[480,79],[500,83],[520,84],
+            [540,83],[560,81],[580,79],[600,77],[620,74],[640,71],[660,67],
+            [680,62],[700,57],[720,49],[740,42],[760,36],[780,30],[800,24],
+            [820,18],[840,13],[860,8],[880,5],[900,3],[920,2],[940,1],[960,0.5],[980,0.2],[1000,0.1]
+          ]
+        },
+        {
+          name: 'FLIR GS3-PGE-60S6M-C', sensor: 'ICX694',
+          color: '#fca5a5',
+          // ICX694 Mono — digitised from Sony datasheet (relative sensitivity %, not scaled)
+          data: [
+            [400,58],[420,72],[440,82],[460,87],[480,92],[500,97],[520,99],
+            [540,100],[560,100],[580,99],[600,97],[620,93],[640,86],[660,78],
+            [680,70],[700,66],[720,63],[740,60],[760,53],[780,47],[800,42],
+            [820,40],[840,39],[860,34],[880,24],[900,17],[920,11],[940,7],[960,4],[980,2],[1000,1]
+          ]
+        }
+      ];
+
+      const dpr = window.devicePixelRatio || 1;
+      const canvas = document.getElementById('qe-canvas');
+      const isMobile = window.innerWidth <= 640;
+      const CW = isMobile ? Math.min(window.innerWidth - 36, 340) : 560;
+      const CH = isMobile ? 220 : 280;
+      canvas.width = CW * dpr; canvas.height = CH * dpr;
+      canvas.style.width = CW + 'px'; canvas.style.height = CH + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const pad = { t: 14, r: 18, b: 44, l: isMobile ? 36 : 44 };
+      const W = CW - pad.l - pad.r;
+      const H = CH - pad.t - pad.b;
+      const wMin = 400, wMax = 1000, qMax = 100;
+
+      function wx(nm)  { return pad.l + (nm - wMin) / (wMax - wMin) * W; }
+      function qy(pct) { return pad.t + H - (pct / qMax) * H; }
+
+      function drawChart(crossX) {
+        ctx.clearRect(0, 0, CW, CH);
+
+        // Grid
+        ctx.strokeStyle = 'rgba(255,255,255,.06)';
+        ctx.lineWidth = 1;
+        [0,20,40,60,80,100].forEach(q => {
+          const y = qy(q);
+          ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + W, y); ctx.stroke();
+          ctx.fillStyle = 'rgba(255,255,255,.35)';
+          ctx.font = `${isMobile?9:10}px JetBrains Mono,monospace`;
+          ctx.textAlign = 'right';
+          ctx.fillText(q, pad.l - 5, y + 3.5);
+        });
+        [400,500,600,700,800,900,1000].forEach(nm => {
+          const x = wx(nm);
+          ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t + H); ctx.stroke();
+          ctx.fillStyle = 'rgba(255,255,255,.35)';
+          ctx.font = `${isMobile?9:10}px JetBrains Mono,monospace`;
+          ctx.textAlign = 'center';
+          ctx.fillText(nm, x, pad.t + H + 14);
+        });
+
+        // Axis labels
+        ctx.save();
+        ctx.translate(isMobile?9:12, pad.t + H/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.fillStyle = 'rgba(255,255,255,.5)';
+        ctx.font = `${isMobile?9:10}px Space Grotesk,sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillText('QE (%)', 0, 0);
+        ctx.restore();
+        ctx.fillStyle = 'rgba(255,255,255,.5)';
+        ctx.font = `${isMobile?9:10}px Space Grotesk,sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillText('Wavelength (nm)', pad.l + W/2, CH - 5);
+
+        // Curves
+        sensors.forEach(s => {
+          ctx.beginPath();
+          ctx.strokeStyle = s.color;
+          ctx.lineWidth = isMobile ? 1.5 : 2;
+          ctx.lineJoin = 'round';
+          s.data.forEach(([nm, q], i) => {
+            const x = wx(nm), y = qy(q);
+            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+          });
+          ctx.stroke();
+        });
+
+        // Crosshair + tooltip
+        if (crossX !== null) {
+          const nm = Math.round(wMin + (crossX - pad.l) / W * (wMax - wMin));
+          const nmClamp = Math.max(wMin, Math.min(wMax, nm));
+          const x = wx(nmClamp);
+
+          ctx.strokeStyle = 'rgba(255,255,255,.25)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t + H); ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Dots + tooltip box
+          const vals = sensors.map(s => {
+            // Interpolate
+            let lo = s.data[0], hi = s.data[s.data.length-1];
+            for (let i = 0; i < s.data.length - 1; i++) {
+              if (s.data[i][0] <= nmClamp && s.data[i+1][0] >= nmClamp) {
+                lo = s.data[i]; hi = s.data[i+1]; break;
+              }
+            }
+            const t = lo[0] === hi[0] ? 0 : (nmClamp - lo[0]) / (hi[0] - lo[0]);
+            return lo[1] + t * (hi[1] - lo[1]);
+          });
+
+          vals.forEach((q, i) => {
+            const cx2 = x, cy = qy(q);
+            ctx.beginPath();
+            ctx.arc(cx2, cy, 4, 0, Math.PI*2);
+            ctx.fillStyle = sensors[i].color;
+            ctx.fill();
+          });
+
+          // Tooltip
+          const lines = [`λ = ${nmClamp} nm`, ...sensors.map((s,i) => `${s.name.split(' ')[1]||s.name}: ${vals[i].toFixed(1)}%`)];
+          const fs = isMobile ? 9 : 10;
+          ctx.font = `${fs}px JetBrains Mono,monospace`;
+          const tw = Math.max(...lines.map(l => ctx.measureText(l).width));
+          const th = lines.length * (fs + 4) + 8;
+          let tx = x + 10, ty = pad.t + 8;
+          if (tx + tw + 14 > CW) tx = x - tw - 22;
+          ctx.fillStyle = 'rgba(15,23,42,.88)';
+          ctx.strokeStyle = 'rgba(255,255,255,.12)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.roundRect(tx, ty, tw + 14, th, 5);
+          ctx.fill(); ctx.stroke();
+          lines.forEach((l, li) => {
+            ctx.fillStyle = li === 0 ? 'rgba(255,255,255,.7)' : sensors[li-1].color;
+            ctx.textAlign = 'left';
+            ctx.fillText(l, tx + 7, ty + (fs + 4) * li + fs + 4);
+          });
+        }
+      }
+
+      drawChart(null);
+
+      // Mouse / touch interaction
+      function getX(e) {
+        const r = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return (clientX - r.left) * (CW / r.width);
+      }
+      canvas.addEventListener('mousemove', e => {
+        const x = getX(e);
+        if (x >= pad.l && x <= pad.l + W) drawChart(x); else drawChart(null);
+      });
+      canvas.addEventListener('mouseleave', () => drawChart(null));
+      canvas.addEventListener('touchmove', e => {
+        e.preventDefault();
+        const x = getX(e);
+        if (x >= pad.l && x <= pad.l + W) drawChart(x); else drawChart(null);
+      }, { passive: false });
+      canvas.addEventListener('touchend', () => drawChart(null));
+
+      // Legend
+      const legEl = document.getElementById('qe-legend');
+      sensors.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'radar-leg-item';
+        btn.innerHTML = `<span class="radar-dot" style="background:${s.color};box-shadow:0 0 6px ${s.color}55"></span><span class="leg-label">${s.name}${s.sensor ? ` <span style="opacity:.55;font-size:.7em">(${s.sensor})</span>` : ''}</span>`;
+        legEl.appendChild(btn);
+      });
+    })();
+    </script>
   </div>
 
   <!-- ══ HENE CDI ══ -->
@@ -674,13 +996,28 @@
           <div class="link-url">developer.nvidia.com/cuda</div>
           <div class="link-desc">GPU-accelerated parallel computing platform. Dramatically speeds up image processing, reconstruction, and deep learning.</div>
         </a>
+        <a class="link-card" href="https://www.graphreader.com/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">📈</span><span class="link-name">GraphReader</span></div>
+          <div class="link-url">graphreader.com</div>
+          <div class="link-desc">Extract numerical data from graph images. Upload a chart, mark axes, and digitise curve values — useful for reading sensor datasheets.</div>
+        </a>
+        <a class="link-card" href="https://www.spyder-ide.org/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🕷️</span><span class="link-name">Spyder IDE</span></div>
+          <div class="link-url">spyder-ide.org</div>
+          <div class="link-desc">Scientific Python IDE with variable explorer, debugger, and IPython console. Designed for data analysis and scientific computing workflows.</div>
+        </a>
+        <a class="link-card" href="https://refractiveindex.info/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">🔭</span><span class="link-name">refractiveindex.info</span></div>
+          <div class="link-url">refractiveindex.info</div>
+          <div class="link-desc">Refractive index database for optical materials — glass, crystals, metals, and coatings. Wavelength-dependent n and k values, essential for optical design.</div>
+        </a>
       </div>
     </div>
 
     <div class="links-section">
       <p class="links-section-title">Optics &amp; Photonics Journals</p>
       <div class="journal-list">
-        <p class="jpub-group">Optica Publishing</p>
+        <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=opg.optica.org&sz=64" alt="" loading="lazy">Optica Publishing</p>
         <a class="journal-row" href="https://opg.optica.org/oe/home.cfm" target="_blank" rel="noopener">
           <span class="jname">Optics Express</span><span class="jdesc">All aspects of optics &amp; photonics — open-access, high-impact</span>
         </a>
@@ -697,7 +1034,7 @@
           <span class="jname">JOSA B</span><span class="jdesc">Laser physics, nonlinear &amp; ultrafast optics, quantum coherence</span>
         </a>
 
-        <p class="jpub-group">Nature Portfolio</p>
+        <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=nature.com&sz=64" alt="" loading="lazy">Nature Portfolio</p>
         <a class="journal-row" href="https://www.nature.com/nphoton/" target="_blank" rel="noopener">
           <span class="jname">Nature Photonics</span><span class="jdesc">Breakthrough research across all photonics — highest-impact</span>
         </a>
@@ -705,7 +1042,7 @@
           <span class="jname">Light: Science &amp; Applications</span><span class="jdesc">Open-access, broad scope, light science &amp; technology</span>
         </a>
 
-        <p class="jpub-group">Wiley-VCH</p>
+        <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=onlinelibrary.wiley.com&sz=64" alt="" loading="lazy">Wiley-VCH</p>
         <a class="journal-row" href="https://onlinelibrary.wiley.com/journal/18638899" target="_blank" rel="noopener">
           <span class="jname">Laser &amp; Photonics Reviews</span><span class="jdesc">Reviews &amp; research in laser science, strong for coherent imaging</span>
         </a>
@@ -713,7 +1050,7 @@
           <span class="jname">Advanced Optical Materials</span><span class="jdesc">Metamaterials, 2D materials, active &amp; functional optical media</span>
         </a>
 
-        <p class="jpub-group">ACS Publications</p>
+        <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=pubs.acs.org&sz=64" alt="" loading="lazy">ACS Publications</p>
         <a class="journal-row" href="https://pubs.acs.org/journal/apchd5" target="_blank" rel="noopener">
           <span class="jname">ACS Photonics</span><span class="jdesc">Nanophotonics, plasmonics, quantum optics &amp; ultrafast phenomena</span>
         </a>
@@ -721,18 +1058,233 @@
           <span class="jname">ACS Applied Optical Materials</span><span class="jdesc">Coatings, filters, waveguides &amp; functional optical materials</span>
         </a>
 
-        <p class="jpub-group">IOP Publishing</p>
+        <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=iopscience.iop.org&sz=64" alt="" loading="lazy">IOP Publishing</p>
         <a class="journal-row" href="https://iopscience.iop.org/journal/2040-8986" target="_blank" rel="noopener">
           <span class="jname">Journal of Optics</span><span class="jdesc">Theoretical &amp; experimental optics, coherence &amp; imaging</span>
         </a>
 
-        <p class="jpub-group">SPIE Digital Library</p>
+        <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=spiedigitallibrary.org&sz=64" alt="" loading="lazy">SPIE Digital Library</p>
         <a class="journal-row" href="https://www.spiedigitallibrary.org/journals/journal-of-biomedical-optics" target="_blank" rel="noopener">
           <span class="jname">J. Biomedical Optics</span><span class="jdesc">Microscopy, spectral imaging &amp; tissue optics</span>
         </a>
         <a class="journal-row" href="https://www.spiedigitallibrary.org/journals/journal-of-micro-nanolithography-mems-and-moems" target="_blank" rel="noopener">
           <span class="jname">JM3 — J. Micro/Nanolithography</span><span class="jdesc">Micro/nanofabrication, MEMS, MOEMS &amp; lithography techniques</span>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PYTHON ══ -->
+  <div id="section-python">
+    <p class="ph-eyebrow">🐍 Python Tips</p>
+    <h2 class="ph-section-title">Python Cheatsheet</h2>
+
+    <div class="py-section">
+      <p class="py-section-title">NumPy — Arrays &amp; Indexing</p>
+      <div class="py-grid">
+        <div class="py-card">
+          <p class="py-label">Create arrays</p>
+          <pre class="py-code">import numpy as np
+a = np.zeros((512, 512))        # float64 zeros
+a = np.ones((3, 256, 256))      # 3-channel
+a = np.arange(0, 1, 0.01)       # 0.00 … 0.99
+a = np.linspace(400, 700, 301)  # 300 steps
+a = np.random.rand(100, 100)</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Slicing / fancy indexing</p>
+          <pre class="py-code">a[10:20, :]          # rows 10–19
+a[::2, ::2]          # every other pixel
+a[mask]              # boolean mask
+a[[0, 3, 7], :]      # pick rows
+np.where(a > 0.5, 1, 0)  # conditional</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Shape &amp; dtype</p>
+          <pre class="py-code">a.shape              # (H, W) or (H, W, C)
+a.dtype              # float64, uint16 …
+a.astype(np.float32)
+a = a[np.newaxis, :] # add batch dim → (1,H,W)
+a = a.squeeze()      # remove size-1 dims</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Stats</p>
+          <pre class="py-code">a.min(), a.max()
+a.mean(), a.std()
+np.percentile(a, [1, 99])
+np.argmax(a)         # flat index
+np.unravel_index(np.argmax(a), a.shape)</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-section">
+      <p class="py-section-title">Image I/O</p>
+      <div class="py-grid">
+        <div class="py-card">
+          <p class="py-label">Read / write (tifffile)</p>
+          <pre class="py-code">import tifffile as tf
+img = tf.imread('frame.tif')     # → ndarray
+tf.imwrite('out.tif', img)
+
+# multi-page stack
+stack = tf.imread('stack.tif')   # (N, H, W)
+tf.imwrite('stack_out.tif', stack, imagej=True)</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">HDF5 (h5py)</p>
+          <pre class="py-code">import h5py
+with h5py.File('data.h5', 'w') as f:
+    f.create_dataset('cube', data=cube)
+    f.attrs['wavelengths'] = wl_array
+
+with h5py.File('data.h5', 'r') as f:
+    cube = f['cube'][:]
+    wl   = f.attrs['wavelengths']</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Matplotlib quick-save</p>
+          <pre class="py-code">import matplotlib.pyplot as plt
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.imshow(img, cmap='gray', vmin=0, vmax=4095)
+ax.set_title('Frame 0')
+plt.tight_layout()
+fig.savefig('preview.png', dpi=150)
+plt.close(fig)</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Normalize &amp; convert</p>
+          <pre class="py-code"># 16-bit → float [0, 1]
+img_f = img.astype(np.float32) / 65535.0
+
+# float → 8-bit for display
+img_8 = (img_f * 255).clip(0,255).astype(np.uint8)
+
+# stretch to [0, 1]
+lo, hi = np.percentile(img, [1, 99])
+img_s  = (img - lo) / (hi - lo).clip(0, 1)</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-section">
+      <p class="py-section-title">SciPy — Signal &amp; Spectral Processing</p>
+      <div class="py-grid">
+        <div class="py-card">
+          <p class="py-label">Gaussian filter</p>
+          <pre class="py-code">from scipy.ndimage import gaussian_filter
+smooth = gaussian_filter(img, sigma=2)
+
+# per-channel on a cube (H, W, λ)
+from scipy.ndimage import gaussian_filter1d
+cube_s = gaussian_filter1d(cube, sigma=1, axis=2)</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">FFT / power spectrum</p>
+          <pre class="py-code">from scipy.fft import fft2, fftshift
+F = fftshift(fft2(img))
+power = np.abs(F)**2
+log_p = np.log1p(power)   # log scale for display</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Find peaks (1D spectrum)</p>
+          <pre class="py-code">from scipy.signal import find_peaks
+peaks, props = find_peaks(
+    spectrum,
+    height=0.1,        # min amplitude
+    distance=5,        # min spacing (samples)
+    prominence=0.05
+)
+peak_wl = wavelengths[peaks]</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Interpolate / resample</p>
+          <pre class="py-code">from scipy.interpolate import interp1d
+f = interp1d(wl_old, spectrum, kind='cubic',
+             fill_value='extrapolate')
+spectrum_new = f(wl_new)
+
+# 2D bilinear resize
+from scipy.ndimage import zoom
+big = zoom(img, (2.0, 2.0))</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-section">
+      <p class="py-section-title">Environment &amp; Package Management</p>
+      <div class="py-grid">
+        <div class="py-card">
+          <p class="py-label">Conda essentials</p>
+          <pre class="py-code">conda create -n myenv python=3.11
+conda activate myenv
+conda install numpy scipy matplotlib tifffile h5py
+conda env export > environment.yml
+conda env create -f environment.yml</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">pip in a venv</p>
+          <pre class="py-code">python -m venv .venv
+source .venv/bin/activate   # Linux/Mac
+.venv\Scripts\activate      # Windows
+
+pip install -r requirements.txt
+pip freeze > requirements.txt</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Useful one-liners</p>
+          <pre class="py-code">python -c "import numpy; print(numpy.__version__)"
+python -m pip show tifffile
+pip list --outdated
+pip install --upgrade pip setuptools</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Jupyter</p>
+          <pre class="py-code">jupyter lab                # start lab
+jupyter nbconvert --to script nb.ipynb
+# restart kernel &amp; run all
+jupyter nbconvert --to notebook \
+  --execute nb.ipynb --output nb_out.ipynb</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-section">
+      <p class="py-section-title">Hyperspectral Cube Patterns</p>
+      <div class="py-grid">
+        <div class="py-card">
+          <p class="py-label">Spectrum at a pixel</p>
+          <pre class="py-code"># cube shape: (H, W, λ)
+spectrum = cube[row, col, :]      # 1-D spectrum
+mean_spec = cube[r1:r2, c1:c2, :].mean(axis=(0,1))</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Band image</p>
+          <pre class="py-code">band_idx = np.searchsorted(wavelengths, 550)  # nm
+band_img = cube[:, :, band_idx]
+
+# narrow-band average
+lo, hi = 540, 560   # nm
+mask = (wavelengths >= lo) & (wavelengths <= hi)
+band_avg = cube[:, :, mask].mean(axis=2)</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">RGB preview from cube</p>
+          <pre class="py-code">r = cube[:,:, np.searchsorted(wl, 630)]
+g = cube[:,:, np.searchsorted(wl, 532)]
+b = cube[:,:, np.searchsorted(wl, 450)]
+rgb = np.stack([r, g, b], axis=2)
+rgb = (rgb / rgb.max() * 255).astype(np.uint8)</pre>
+        </div>
+        <div class="py-card">
+          <p class="py-label">Flatten &amp; PCA</p>
+          <pre class="py-code">from sklearn.decomposition import PCA
+H, W, L = cube.shape
+X = cube.reshape(-1, L)           # (H*W, λ)
+pca = PCA(n_components=5)
+scores = pca.fit_transform(X)
+pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
+        </div>
       </div>
     </div>
   </div>
@@ -745,13 +1297,14 @@
   <script src="./app.js"></script>
   <script>
     // ── Extra-tab switching ──
-    const EXTRA_PANELS = ['cam', 'hene', 'hypercom', 'hyperselect', 'links'];
+    const EXTRA_PANELS = ['cam', 'hene', 'hypercom', 'hyperselect', 'links', 'python'];
     const EXTRA_TAB_STYLES = {
       'cam':         { color: '#cffafe', background: 'rgba(103,232,249,0.15)', border: '1px solid rgba(103,232,249,.4)' },
       'hene':        { color: '#fecaca', background: 'rgba(252,100,100,0.15)', border: '1px solid rgba(252,100,100,.4)' },
       'hypercom':    { color: '#e9d5ff', background: 'rgba(192,132,252,0.18)', border: '1px solid rgba(192,132,252,.4)' },
       'hyperselect': { color: '#bbf7d0', background: 'rgba(100,232,150,0.15)', border: '1px solid rgba(100,232,150,.4)' },
       'links':       { color: '#fde68a', background: 'rgba(253,230,138,0.12)', border: '1px solid rgba(253,230,138,.4)' },
+      'python':      { color: '#fcd34d', background: 'rgba(253,211,77,0.12)',  border: '1px solid rgba(253,211,77,.35)' },
     };
 
     function hideAllPanels() {

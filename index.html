@@ -363,11 +363,7 @@
           <li>Experiment system notes</li>
         </ul>
       </div>
-      <div class="search-wrap">
-        <span class="search-icon">/</span>
-        <input id="search" type="search" placeholder="Search Linux commands… e.g. copy, chmod, grep" autocomplete="off">
-        <kbd>Ctrl K</kbd>
-      </div>
+
     </div>
 
     <!-- capybara photo -->
@@ -402,6 +398,11 @@
     <button role="tab" class="main-tab tab-links" aria-selected="false" data-panel="links">
       <span class="ico">🔗</span>Links
     </button>
+    <div class="search-wrap">
+      <span class="search-icon">/</span>
+      <input id="search" type="search" placeholder="Search…" autocomplete="off">
+      <kbd>Ctrl K</kbd>
+    </div>
   </nav>
 
   <!-- ══ LINUX SECTION (app-driven) ══ -->
@@ -1395,7 +1396,7 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
   </div>
 
   <footer>
-    <p>Tip: press <kbd>Ctrl K</kbd> or <kbd>/</kbd> to search Linux commands. Commands marked <span class="badge danger">⚠ careful</span> can delete data or change your system — double-check before running.</p>
+    <p>Tip: press <kbd>Ctrl K</kbd> or <kbd>/</kbd> to search. Commands marked <span class="badge danger">⚠ careful</span> can delete data or change your system — double-check before running.</p>
   </footer>
 
   <script src="./data.js"></script>
@@ -1433,7 +1434,6 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
 
         // hide Linux shell
         document.getElementById('linux-shell').classList.add('hidden');
-        document.getElementById('search').closest('.search-wrap').style.display = 'none';
 
         // hide all placeholder sections, show the right one
         hideAllPanels();
@@ -1444,7 +1444,6 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
     // clicking Linux tab re-shows the shell
     document.querySelector('.main-tab[data-main="linux"]').addEventListener('click', () => {
       document.getElementById('linux-shell').classList.remove('hidden');
-      document.getElementById('search').closest('.search-wrap').style.display = '';
       hideAllPanels();
     });
 
@@ -1458,6 +1457,27 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
         }
       }
     });
+
+    // ── Global search for non-Linux panels ──────────────────────────────
+    (function() {
+      const searchEl = document.getElementById('search');
+      if (!searchEl) return;
+      searchEl.addEventListener('input', () => {
+        const q = searchEl.value.trim().toLowerCase();
+        // Find active non-Linux panel
+        const activePanel = document.querySelector(
+          '#section-cam.active, #section-light.active, #section-hene.active, ' +
+          '#section-hypercom.active, #section-hyperselect.active, ' +
+          '#section-links.active, #section-python.active'
+        );
+        if (!activePanel) return; // Linux handles its own search
+        const cards = activePanel.querySelectorAll('.cam-card, .link-card, .ph-card, .journal-row, .py-section, [class*="card"]');
+        if (!cards.length) return;
+        cards.forEach(card => {
+          card.style.display = (!q || card.textContent.toLowerCase().includes(q)) ? '' : 'none';
+        });
+      });
+    })();
   </script>
 </body>
 </html>

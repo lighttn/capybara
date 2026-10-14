@@ -50,7 +50,7 @@
   function renderSubTabs() {
     const main = findMain(state.main);
     subTabsEl.innerHTML =
-      `<p class="side-title">${esc(main.label)} topics</p>` +
+      `\` +
       main.sections
         .map(
           (s) => `<button role="tab" class="sub-tab" aria-selected="${!state.query && s.id === state.sub}" data-sub="${s.id}">

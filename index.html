@@ -192,14 +192,17 @@
       min-width: 148px; flex-shrink: 0; position: sticky; top: 1rem;
     }
     .py-tab {
-      display: flex; align-items: center; gap: .55rem;
-      padding: .52rem .85rem; border-radius: 8px; border: none;
-      background: transparent; color: var(--muted); cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: .85rem;
-      text-align: left; transition: background .15s, color .15s; width: 100%;
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; text-align: left;
+      padding: 9px 12px;
+      font: 500 0.95rem var(--sans);
+      color: var(--muted); background: transparent;
+      border: 0; border-left: 3px solid transparent;
+      border-radius: 0 8px 8px 0; cursor: pointer;
+      transition: all 0.12s;
     }
-    .py-tab:hover  { background: rgba(253,211,77,.08); color: var(--text); }
-    .py-tab.active { background: rgba(253,211,77,.13); color: #fcd34d; font-weight: 600; }
+    .py-tab:hover  { color: var(--text); background: var(--panel); }
+    .py-tab.active { color: var(--text); background: var(--panel); border-left-color: #fcd34d; font-weight: 700; }
     .py-tab-icon { font-size: 1rem; line-height: 1; flex-shrink: 0; }
     .py-main { flex: 1; min-width: 0; }
     /* ── Python tips ── */

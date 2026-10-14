@@ -53,6 +53,9 @@ kbd {
 .hero {
   padding: 56px 24px 28px;
   border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background-image:
     linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
@@ -138,6 +141,9 @@ h1 .amp { font-weight: 400; }
   background: rgba(13, 17, 23, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .main-tab {
   display: flex;
@@ -285,6 +291,9 @@ main { min-width: 0; outline: none; }
   padding: 6px 8px 6px 12px;
   background: var(--bg-2);
   border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   font: 0.7rem var(--mono);
   color: var(--muted);
   text-transform: uppercase;
@@ -343,3 +352,5 @@ footer { max-width: 900px; margin: 0 auto; padding: 24px; border-top: 1px solid 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.main-tabs::-webkit-scrollbar { display: none; }

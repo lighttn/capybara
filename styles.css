@@ -87,22 +87,20 @@ h1 .amp { font-weight: 400; }
 
 .search-wrap {
   position: relative;
+  max-width: 640px;
   display: flex;
   align-items: center;
-  margin-left: auto;
-  flex-shrink: 0;
 }
 .search-icon {
   position: absolute;
-  left: 10px;
-  font-size: .85rem;
+  left: 16px;
   font-family: var(--mono);
   color: var(--accent);
   font-weight: 700;
 }
 #search {
-  width: 220px;
-  padding: 7px 44px 7px 32px;
+  width: 100%;
+  padding: 15px 80px 15px 40px;
   font: 1rem var(--mono);
   color: var(--text);
   background: var(--panel);
@@ -111,9 +109,8 @@ h1 .amp { font-weight: 400; }
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
-#search { transition: width 0.2s; }
-#search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); width: 300px; }
-.search-wrap kbd { position: absolute; right: 8px; font-size: .7rem; }
+#search:focus { border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.search-wrap kbd { position: absolute; right: 14px; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 

@@ -52,7 +52,7 @@ window.GUIDE = [
           { cmd: "rmdir", desc: "Remove an empty folder (safer than rm -r).", ex: "rmdir empty_folder", level: "beginner" },
           { cmd: "ln -s", desc: "Create a symbolic link (shortcut) to a file or folder.", ex: "ln -s /var/www/html ~/site", level: "intermediate" },
           { cmd: "rsync", desc: "Smart copy/sync that only transfers changes. Great for backups and remote copies.", ex: "rsync -avh --progress src/ backup/\nrsync -avz project/ user@server:/home/user/project/", level: "intermediate" },
-          { cmd: "scp", desc: "Securely copy files to or from another machine over SSH.", ex: "scp file.txt user@server:/tmp/\nscp user@server:/var/log/app.log .\nscp -r folder/ user@server:~/", level: "intermediate" },
+          { cmd: "scp", desc: "Securely copy files to or from another machine over SSH.", ex: "scp ~/folder/file ID@IP:/mnt/data/your_folder  # local → remote\nscp file.txt user@server:/tmp/\nscp user@server:/var/log/app.log .\nscp -r folder/ user@server:~/", level: "intermediate" },
           { cmd: "sftp", desc: "Interactive secure file transfer session (put, get, ls, cd).", ex: "sftp user@server\nsftp> put local.txt\nsftp> get remote.txt", level: "intermediate" },
           { cmd: "wget", desc: "Download a file from the web.", ex: "wget https://example.com/file.zip", level: "beginner" },
           { cmd: "curl", desc: "Transfer data to/from URLs. -O saves with the remote name, -L follows redirects.", ex: "curl -LO https://example.com/file.zip\ncurl https://api.github.com", level: "intermediate" },

@@ -4,8 +4,8 @@
   --panel: #161f2c;
   --panel-2: #1c2736;
   --line: #263346;
-  --text: #e6edf3;
-  --muted: #8b9bb0;
+  --text: #f0f6fc;
+  --muted: #a8b8cc;
   --linux: #3ddc84;
   --python: #ffd43b;
   --python-2: #4b8bbe;
@@ -60,7 +60,15 @@ kbd {
 }
 .hero-inner { max-width: 1200px; margin: 0 auto; }
 
-.prompt { font-family: var(--mono); font-size: 0.95rem; color: var(--muted); margin: 0 0 10px; }
+.prompt-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.prompt { font-family: var(--mono); font-size: 0.95rem; color: var(--muted); margin: 0; }
 .prompt .user { color: var(--linux); }
 .prompt .path { color: var(--python-2); }
 .prompt .typed { color: var(--text); }
@@ -84,30 +92,30 @@ h1 .amp { font-weight: 400; }
 
 .search-wrap {
   position: relative;
-  max-width: 640px;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 .search-icon {
   position: absolute;
-  left: 16px;
+  left: 12px;
   font-family: var(--mono);
   color: var(--accent);
   font-weight: 700;
 }
 #search {
-  width: 100%;
-  padding: 15px 80px 15px 40px;
-  font: 1rem var(--mono);
+  width: 220px;
+  padding: 8px 70px 8px 30px;
+  font: 0.9rem var(--mono);
   color: var(--text);
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 10px;
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s, width 0.2s;
 }
-#search:focus { border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
-.search-wrap kbd { position: absolute; right: 14px; }
+#search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); width: 300px; }
+.search-wrap kbd { position: absolute; right: 10px; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 
@@ -275,7 +283,7 @@ main { min-width: 0; outline: none; }
 .card h3 code { color: var(--accent); }
 .badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .crumb { margin: 6px 0 0; font: 0.75rem var(--mono); color: var(--muted); }
-.desc { color: #c4d0de; margin: 10px 0 14px; flex: 1; }
+.desc { color: var(--muted); margin: 10px 0 14px; flex: 1; }
 
 .code { background: #0a0e14; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .code-bar {
@@ -310,6 +318,25 @@ main { min-width: 0; outline: none; }
 .empty { color: var(--muted); padding: 30px; text-align: center; border: 1px dashed var(--line); border-radius: var(--radius); grid-column: 1 / -1; }
 
 footer { max-width: 1200px; margin: 0 auto; padding: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- Doc buttons (Light sources) ---------- */
+.doc-links { display: flex; gap: .5rem; margin-top: 1rem; flex-wrap: wrap; padding: 0 1.2rem 1rem; }
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font: 600 0.75rem 'JetBrains Mono', monospace;
+  padding: .35rem .75rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+}
+.doc-btn:hover { color: #fff; border-color: var(--accent); }
+.doc-btn.pdf { border-color: rgba(252,100,100,.4); color: #fca5a5; }
+.doc-btn.pdf:hover { border-color: #fca5a5; color: #fff; }
 
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 

@@ -50,7 +50,6 @@
   function renderSubTabs() {
     const main = findMain(state.main);
     subTabsEl.innerHTML =
-      `<p class="side-title">${esc(main.label)} topics</p>` +
       main.sections
         .map(
           (s) => `<button role="tab" class="sub-tab" aria-selected="${!state.query && s.id === state.sub}" data-sub="${s.id}">
@@ -91,7 +90,6 @@
     const items = sec.items.filter(levelOk);
     contentEl.innerHTML = `
       <section class="section-head">
-        <p class="eyebrow">${main.icon} ${esc(main.label)}</p>
         <h2>${sec.icon} ${esc(sec.label)}</h2>
         <p class="intro">${esc(sec.intro)}</p>
         ${sec.tips ? `<div class="tips"><strong>Beginner tips</strong><ul>${sec.tips.map((t) => `<li>${t}</li>`).join("")}</ul></div>` : ""}

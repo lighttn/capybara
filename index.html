@@ -474,24 +474,24 @@
         </div>
       </div>
 
-      <!-- Allied Vision Alvium 1800 U-2050 -->
+      <!-- Allied Vision Alvium 1800 U-1240m -->
       <div class="cam-card">
         <div class="cam-header">
           <div>
             <p class="cam-model">Allied Vision Alvium</p>
-            <p class="cam-name">1800 U-2050</p>
+            <p class="cam-name">1800 U-1240m</p>
           </div>
           <span class="cam-badge mono">Mono</span>
         </div>
         <div class="cam-specs">
-          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">20.2 MP <span class="cam-tag">5544 × 3694</span></span></div>
-          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">2.40 μm</span></div>
-          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">IMX183</span></div>
-          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">21 fps</span></div>
-          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">14 µs – 30 s</span></div>
-          <div class="cam-row"><span class="cam-label">QE (peak)</span><span class="cam-val">~84% @ 520 nm</span></div>
-          <div class="cam-row"><span class="cam-label">Spectral range</span><span class="cam-val">300–1100 nm <span class="cam-tag">NIR</span></span></div>
-          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.1</span></div>
+          <div class="cam-row"><span class="cam-label">Resolution</span><span class="cam-val cam-highlight">12.22 MP <span class="cam-tag">4024 × 3036</span></span></div>
+          <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">1.85 μm</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">IMX226</span></div>
+          <div class="cam-row"><span class="cam-label">Sensor size</span><span class="cam-val">1/1.7" <span class="cam-tag">7.4 × 5.6 mm</span></span></div>
+          <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">29 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">177 µs – 10 s</span></div>
+          <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">65 dB</span></div>
+          <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.1 <span class="cam-tag">C-Mount</span></span></div>
         </div>
       </div>
 
@@ -567,7 +567,7 @@
             <th>Spec</th>
             <th>Basler acA2500-60um</th>
             <th>Basler a2A4504-18umPRO</th>
-            <th>Allied Vision 1800 U-2050</th>
+            <th>Allied Vision 1800 U-1240m</th>
             <th>FLIR GS3-PGE-60S6M-C</th>
           </tr>
         </thead>
@@ -576,49 +576,49 @@
             <td class="row-label">Sensor</td>
             <td>PYTHON 5000</td>
             <td>IMX541 BSI</td>
-            <td>IMX183 BSI</td>
+            <td>IMX226</td>
             <td>ICX694 CCD</td>
           </tr>
           <tr>
             <td class="row-label">Resolution</td>
             <td>5 MP</td>
             <td class="best">20.2 MP</td>
-            <td class="best">20.2 MP</td>
+            <td>12.22 MP</td>
             <td>6.1 MP</td>
           </tr>
           <tr>
             <td class="row-label">Pixel size</td>
             <td>4.80 μm</td>
             <td>2.74 μm</td>
-            <td>2.40 μm</td>
+            <td>1.85 μm</td>
             <td class="best">4.54 μm</td>
           </tr>
           <tr>
             <td class="row-label">QE (peak)</td>
             <td>~69%</td>
             <td>~80%</td>
-            <td class="best">~84%</td>
+            <td>~56%</td>
             <td>~74%</td>
           </tr>
           <tr>
             <td class="row-label">Spectral range</td>
             <td>400–1000 nm</td>
             <td>350–1000 nm</td>
-            <td class="best">300–1100 nm</td>
+            <td>400–1000 nm</td>
             <td>380–1000 nm</td>
           </tr>
           <tr>
             <td class="row-label">Frame rate</td>
             <td class="best">60 fps</td>
             <td>18 fps</td>
-            <td>21 fps</td>
+            <td>29 fps</td>
             <td>24 fps</td>
           </tr>
           <tr>
             <td class="row-label">Bit depth</td>
             <td>10-bit</td>
             <td>8/10/12-bit</td>
-            <td>—</td>
+            <td>8/10/12-bit</td>
             <td class="best">14-bit</td>
           </tr>
           <tr>
@@ -660,13 +660,13 @@
       const rawVals = {
         labels: ['Resolution\n(MP)', 'QE\n(peak)', 'Frame rate\n(fps)', 'Pixel size\n(µm)', 'Spectral\nrange (nm)'],
         units:  ['MP',              '%',          'fps',               'µm',               'nm'],
-        raws:   [[5, 20.2, 20.2, 6.1], [69, 80, 84, 74], [60, 18, 21, 24], [4.80, 2.74, 2.40, 4.54], [600, 650, 800, 620]],
+        raws:   [[5, 20.2, 12.22, 6.1], [69, 80, 56, 74], [60, 18, 29, 24], [4.80, 2.74, 1.85, 4.54], [600, 650, 600, 620]],
       };
 
       const cams = [
         { name: 'Basler acA2500-60um',      color: '#67e8f9', vals: [5/20.2,    69/84, 60/60, 4.80/4.80, 600/800] },
         { name: 'a2A4504-18umPRO',          color: '#a78bfa', vals: [20.2/20.2, 80/84, 18/60, 2.74/4.80, 650/800] },
-        { name: 'AV 1800 U-2050',           color: '#86efac', vals: [20.2/20.2, 84/84, 21/60, 2.40/4.80, 800/800] },
+        { name: 'AV 1800 U-1240m',          color: '#86efac', vals: [12.22/20.2, 56/84, 29/60, 1.85/4.80, 600/800] },
         { name: 'FLIR GS3-PGE-60S6M-C',    color: '#fca5a5', vals: [6.1/20.2,  74/84, 24/60, 4.54/4.80, 620/800] },
       ];
 
@@ -777,7 +777,7 @@
     <!-- QE curve chart -->
     <div class="qe-wrap">
       <h3>QE vs Wavelength — sensor comparison</h3>
-      <p class="qe-note">Digitised from datasheets via QEs.xlsx · ICX694 74%·IMX183 84%·IMX541 80%·Python5000 60% peak</p>
+      <p class="qe-note">Digitised from datasheets via QEs.xlsx · ICX694 74%·IMX226 56%·IMX541 80%·Python5000 60% peak</p>
       <img src="./qe.png" alt="QE vs Wavelength chart" class="qe-img">
     </div>
     </script>

@@ -33,30 +33,31 @@
     }
 
     /* ── Extra tab colours: always keep text visible ── */
-    .tab-cam, .tab-hene, .tab-hypercom, .tab-hyperselect, .tab-links, .tab-python { color: var(--muted); }
+    .tab-cam, .tab-light, .tab-hene, .tab-hypercom, .tab-hyperselect, .tab-links, .tab-python { color: var(--muted); }
 
     /* ── Placeholder sections ── */
-    #section-cam, #section-hene, #section-hypercom, #section-hyperselect, #section-links, #section-python {
+    #section-cam, #section-light, #section-hene, #section-hypercom, #section-hyperselect, #section-links, #section-python {
       display: none; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto;
     }
-    #section-cam.active, #section-hene.active, #section-hypercom.active, #section-hyperselect.active, #section-links.active, #section-python.active { display: block; }
-    .ph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+    #section-python { padding: 0; max-width: unset; }
+    #section-cam.active, #section-light.active, #section-hene.active, #section-hypercom.active, #section-hyperselect.active, #section-links.active, #section-python.active { display: block; }
+    .ph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--sp-grid); margin-top: 1.5rem; }
     .ph-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.2rem 1.4rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--sp-card);
     }
     .ph-card h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 .5rem; }
-    .ph-card p  { font-size: .95rem; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; }
+    .ph-card p  { font-size: 1rem; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; }
     .ph-card p.placeholder { color: var(--muted); font-style: italic; font-family: 'Space Grotesk', sans-serif; font-size: .85rem; }
     .ph-section-title {
-      font-size: 1.4rem; font-weight: 600; color: var(--text);
-      margin: 0 0 .25rem;
+      font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 600; color: var(--text);
+      margin: 0 0 8px; letter-spacing: -0.02em;
     }
-    .ph-eyebrow { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0 0 1rem; }
+    .ph-eyebrow { font-size: 0.8rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 0 0 4px; }
     .ph-note {
-      background: var(--surface); border: 1px dashed var(--border);
+      background: var(--panel); border: 1px dashed var(--line);
       border-radius: 8px; padding: .8rem 1.1rem;
       color: var(--muted); font-size: .85rem; margin-top: 2rem;
     }
@@ -66,12 +67,12 @@
     .cam-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.2rem; margin-top: .5rem;
+      gap: var(--sp-grid); margin-top: .5rem;
     }
     .cam-card {
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 12px; overflow: hidden; transition: border-color .2s;
+      border-radius: var(--radius); overflow: hidden; transition: border-color .2s;
     }
     .cam-card:hover { border-color: var(--linux); }
     .cam-header {
@@ -80,8 +81,7 @@
       border-bottom: 1px solid var(--line); gap: .5rem;
     }
     .cam-model { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 .2rem; }
-    .cam-name  { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
-    .cam-sensor { font-size: .7rem; color: var(--muted); margin: .18rem 0 0; font-family: 'Space Grotesk', sans-serif; opacity: .75; }
+    .cam-name  { font-size: 1.1rem; font-weight: 600; color: var(--text); margin: 0; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
     .cam-sensor { font-size: .7rem; color: var(--muted); margin: .18rem 0 0; font-family: 'Space Grotesk', sans-serif; opacity: .75; }
     .cam-badge {
       flex-shrink: 0; font-size: .68rem; font-weight: 600;
@@ -98,13 +98,40 @@
     }
     .cam-row:last-child { border-bottom: none; }
     .cam-label { font-size: .75rem; color: var(--muted); flex-shrink: 0; }
-    .cam-val   { font-size: .82rem; color: var(--text); font-family: 'JetBrains Mono', monospace; text-align: right; }
+    .cam-val   { font-size: .85rem; color: var(--text); font-family: 'JetBrains Mono', monospace; text-align: right; }
     .cam-highlight { color: #67e8f9; }
     .cam-tag {
       display: inline-block; font-size: .68rem; padding: .1rem .45rem; border-radius: 4px;
       background: rgba(103,232,249,.12); color: #67e8f9; margin-left: .3rem;
       font-family: 'Space Grotesk', sans-serif;
     }
+    /* ── Bit depth / DR explainer ── */
+    .cam-explainer { margin-top: 2rem; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .cam-exp-card {
+      background: rgba(103,232,249,.05); border: 1px solid rgba(103,232,249,.18);
+      border-radius: 10px; padding: 1.1rem 1.2rem;
+    }
+    .cam-exp-card h4 {
+      margin: 0 0 .55rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
+      color: #67e8f9; font-weight: 600; font-family: 'Space Grotesk', sans-serif;
+    }
+    .cam-exp-card p {
+      margin: 0 0 .6rem; font-size: .8rem; color: var(--muted); line-height: 1.55;
+    }
+    .cam-exp-card p:last-child { margin-bottom: 0; }
+    .cam-exp-table { width: 100%; border-collapse: collapse; margin-top: .5rem; font-size: .75rem; font-family: 'JetBrains Mono', monospace; }
+    .cam-exp-table th { text-align: left; color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; padding: .25rem .4rem; border-bottom: 1px solid var(--line); font-family: 'Space Grotesk', sans-serif; }
+    .cam-exp-table th:not(:first-child) { text-align: right; }
+    .cam-exp-table td { padding: .25rem .4rem; color: var(--text); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .cam-exp-table td:not(:first-child) { text-align: right; }
+    .cam-exp-table tr:last-child td { border-bottom: none; }
+    .cam-exp-hl { color: #67e8f9; font-weight: 600; }
+    .cam-exp-formula {
+      margin-top: .6rem; padding: .4rem .7rem; background: rgba(0,0,0,.3);
+      border-radius: 6px; font-size: .78rem; font-family: 'JetBrains Mono', monospace;
+      color: #fcd34d; letter-spacing: .02em;
+    }
+    @media (max-width: 640px) { .cam-explainer { grid-template-columns: 1fr; } }
     /* ── Mono comparison table ── */
     .cam-compare { margin-top: 2rem; }
     .cam-compare h3 {
@@ -142,66 +169,53 @@
       border-bottom: 1px solid var(--line);
     }
     .links-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .85rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--sp-grid);
     }
     .link-card {
       display: flex; flex-direction: column; gap: .35rem;
       background: var(--panel); border: 1px solid var(--line);
-      border-radius: 10px; padding: .9rem 1.1rem;
+      border-radius: var(--radius); padding: var(--sp-card);
       text-decoration: none; transition: border-color .2s, background .2s;
       cursor: pointer;
     }
     .link-card:hover { border-color: var(--linux); background: rgba(103,232,249,.04); }
     .link-card-top { display: flex; align-items: center; gap: .6rem; }
     .link-icon { font-size: 1.2rem; flex-shrink: 0; line-height: 1; }
-    .link-name { font-size: .9rem; font-weight: 600; color: var(--text); font-family: 'Space Grotesk', sans-serif; }
-    .link-url  { font-size: .72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
+    .link-name { font-size: 1.1rem; font-weight: 600; color: var(--text); font-family: 'Space Grotesk', sans-serif; }
+    .link-url  { font-size: .75rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .link-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; margin-top: .1rem; }
-    /* ── Python tips layout ── */
-    .py-layout { display: flex; gap: 1.5rem; align-items: flex-start; }
-    .py-sidebar {
-      display: flex; flex-direction: column; gap: .3rem;
-      min-width: 148px; flex-shrink: 0; position: sticky; top: 1rem;
-    }
-    .py-tab {
-      display: flex; align-items: center; gap: .55rem;
-      padding: .52rem .85rem; border-radius: 8px; border: none;
-      background: transparent; color: var(--muted); cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif; font-size: .85rem;
-      text-align: left; transition: background .15s, color .15s; width: 100%;
-    }
-    .py-tab:hover  { background: rgba(253,211,77,.08); color: var(--text); }
-    .py-tab.active { background: rgba(253,211,77,.13); color: #fcd34d; font-weight: 600; }
+    .link-desc { font-size: 1rem; color: var(--muted); line-height: 1.55; margin-top: .1rem; }
+    /* ── Python icon size ── */
     .py-tab-icon { font-size: 1rem; line-height: 1; flex-shrink: 0; }
-    .py-main { flex: 1; min-width: 0; }
     /* ── Python tips ── */
     .py-section { margin-bottom: 2rem; }
     .py-section-title {
       font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
-      color: #fcd34d; opacity: .8; margin: 0 0 .9rem; font-weight: 600; padding-bottom: .4rem;
-      border-bottom: 1px solid rgba(253,211,77,.2);
+      color: var(--python); opacity: .8; margin: 0 0 .9rem; font-weight: 500; padding-bottom: .4rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--python) 20%, transparent);
     }
     .py-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .85rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--sp-grid);
     }
     .py-card {
       background: var(--panel); border: 1px solid var(--line);
-      border-radius: 10px; padding: .9rem 1.1rem;
+      border-radius: var(--radius); padding: 18px;
       transition: border-color .2s;
     }
     .py-card:hover { border-color: rgba(253,211,77,.4); }
     .py-label {
-      font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
+      font-size: .75rem; text-transform: uppercase; letter-spacing: .08em;
       color: #fcd34d; opacity: .75; margin: 0 0 .55rem; font-weight: 600;
     }
     .py-code {
-      font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
       color: var(--text); background: rgba(0,0,0,.25);
-      border-radius: 6px; padding: .65rem .8rem; margin: 0;
+      border-radius: 6px; padding: 12px 14px; margin: 0;
       overflow-x: auto; white-space: pre; line-height: 1.6;
       border: 1px solid var(--line);
+      scrollbar-width: none; -ms-overflow-style: none;
     }
+    .py-code::-webkit-scrollbar { display: none; }
     /* ── Journal list (line format) ── */
     .journal-list { display: flex; flex-direction: column; }
     .jpub-group {
@@ -278,14 +292,12 @@
         -webkit-overflow-scrolling: touch;
         gap: .35rem;
         padding-bottom: .3rem;
-        scrollbar-width: none;
       }
-      .tab-list::-webkit-scrollbar { display: none; }
       .main-tab { white-space: nowrap; flex-shrink: 0; }
 
       /* Section padding */
-      #section-cam, #section-hene, #section-hypercom,
-      #section-hyperselect, #section-links, #section-python {
+      #section-cam, #section-light, #section-hene, #section-hypercom,
+      #section-hyperselect, #section-links {
         padding: 1.2rem .9rem;
       }
 
@@ -293,7 +305,8 @@
       .cam-grid { grid-template-columns: 1fr; }
 
       /* Comparison table: horizontal scroll */
-      .cam-compare { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .cam-compare { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+      .cam-compare::-webkit-scrollbar { display: none; }
       .cam-compare-table { min-width: 520px; }
 
       /* Radar + QE: stack chart + legend vertically */
@@ -312,11 +325,9 @@
 
       /* Link cards: single column */
       .links-grid { grid-template-columns: 1fr; }
-      .py-layout { flex-direction: column; gap: .8rem; }
-      .py-sidebar { flex-direction: row; flex-wrap: wrap; position: static; min-width: unset; }
-      .py-tab { min-width: unset; flex: 1; justify-content: center; font-size: .78rem; padding: .4rem .5rem; }
+
       .py-grid { grid-template-columns: 1fr; }
-      .py-code { font-size: .65rem; }
+      /* py-code keeps 0.85rem on mobile — matches Linux code size */
     }
   </style>
 </head>
@@ -325,7 +336,14 @@
   <!-- ══ HEADER ══ -->
   <header class="hero">
     <div class="hero-inner">
-      <p class="prompt"><span class="user">you@capybara</span>:<span class="path">~</span>$ <span class="typed">./explore.sh</span><span class="cursor">▌</span></p>
+      <div class="prompt-row">
+        <div class="search-wrap">
+          <span class="search-icon">/</span>
+          <input id="search" type="search" placeholder="Search commands…" autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </div>
+        <p class="prompt"><span class="user">you@capybara</span>:<span class="path">~</span>$ <span class="typed">./explore.sh</span><span class="cursor">▌</span></p>
+      </div>
       <div class="title-row">
         <h1>Capybara 🦫</h1>
         <ul class="title-bullets">
@@ -333,11 +351,7 @@
           <li>Experiment system notes</li>
         </ul>
       </div>
-      <div class="search-wrap">
-        <span class="search-icon">/</span>
-        <input id="search" type="search" placeholder="Search Linux commands… e.g. copy, chmod, grep" autocomplete="off">
-        <kbd>Ctrl K</kbd>
-      </div>
+
     </div>
 
     <!-- capybara photo -->
@@ -356,6 +370,9 @@
     </button>
     <button role="tab" class="main-tab tab-cam" aria-selected="false" data-panel="cam">
       <span class="ico">📷</span>Cam info
+    </button>
+    <button role="tab" class="main-tab tab-light" aria-selected="false" data-panel="light">
+      <span class="ico">💡</span>Light sources
     </button>
     <button role="tab" class="main-tab tab-hene" aria-selected="false" data-panel="hene">
       <span class="ico">🔴</span>HeNe CDI
@@ -383,7 +400,7 @@
   <div id="section-cam">
     <p class="ph-eyebrow">📷 Cam info</p>
     <h2 class="ph-section-title">Camera Specifications</h2>
-    <p style="color:var(--muted);font-size:.9rem;margin:.25rem 0 1.5rem;">Scientific cameras available for microscopy setups.</p>
+    <p style="color:var(--muted);font-size:1.05rem;margin:.25rem 0 1.5rem;">Scientific cameras available for microscopy setups.</p>
     <div class="cam-grid">
 
       <!-- Basler ace acA2500-60um -->
@@ -400,6 +417,7 @@
           <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">4.80 μm</span></div>
           <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">MT9P031</span></div>
           <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">60 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">10 µs – 4 s</span></div>
           <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">10-bit</span></div>
           <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">56.8 dB</span></div>
           <div class="cam-row"><span class="cam-label">QE (peak)</span><span class="cam-val">~69% @ 500 nm</span></div>
@@ -422,6 +440,7 @@
           <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">2.74 μm</span></div>
           <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">IMX541</span></div>
           <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">18 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">16 µs – 30 s</span></div>
           <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">8 / 10 / 12-bit</span></div>
           <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">70.8 dB</span></div>
           <div class="cam-row"><span class="cam-label">QE (peak)</span><span class="cam-val">~80% @ 520 nm</span></div>
@@ -444,6 +463,7 @@
           <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">3.45 μm</span></div>
           <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">CMOS Color</span></div>
           <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">35 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">14 µs – 30 s</span></div>
           <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">12-bit</span></div>
           <div class="cam-row"><span class="cam-label">Dynamic range</span><span class="cam-val">71 dB</span></div>
           <div class="cam-row"><span class="cam-label">QE (peak)</span><span class="cam-val">~55% @ 520 nm <span class="cam-tag">Bayer</span></span></div>
@@ -466,6 +486,7 @@
           <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">2.40 μm</span></div>
           <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">IMX183</span></div>
           <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">21 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">14 µs – 30 s</span></div>
           <div class="cam-row"><span class="cam-label">QE (peak)</span><span class="cam-val">~84% @ 520 nm</span></div>
           <div class="cam-row"><span class="cam-label">Spectral range</span><span class="cam-val">300–1100 nm <span class="cam-tag">NIR</span></span></div>
           <div class="cam-row"><span class="cam-label">Interface</span><span class="cam-val">USB 3.1</span></div>
@@ -486,6 +507,7 @@
           <div class="cam-row"><span class="cam-label">Pixel size</span><span class="cam-val">4.54 μm</span></div>
           <div class="cam-row"><span class="cam-label">Sensor</span><span class="cam-val">ICX694 CCD</span></div>
           <div class="cam-row"><span class="cam-label">Frame rate</span><span class="cam-val">24 fps</span></div>
+          <div class="cam-row"><span class="cam-label">Exposure</span><span class="cam-val">0.1 ms – 32 s</span></div>
           <div class="cam-row"><span class="cam-label">Bit depth</span><span class="cam-val">14-bit</span></div>
           <div class="cam-row"><span class="cam-label">Buffer</span><span class="cam-val">128 MB</span></div>
           <div class="cam-row"><span class="cam-label">QE (peak)</span><span class="cam-val">~74% @ 500 nm</span></div>
@@ -495,6 +517,44 @@
       </div>
 
     </div><!-- /.cam-grid -->
+
+    <!-- Bit depth & Dynamic range explainer -->
+    <div class="cam-explainer">
+      <!-- Bit depth card -->
+      <div class="cam-exp-card">
+        <h4>Bit Depth</h4>
+        <p>Bit depth is the number of bits the ADC uses to encode each pixel's intensity. More bits → finer grey levels → better separation of closely similar signals.</p>
+        <table class="cam-exp-table">
+          <thead><tr><th>Depth</th><th>Levels</th><th>Typical use</th></tr></thead>
+          <tbody>
+            <tr><td>8-bit</td><td>256</td><td>Preview / video</td></tr>
+            <tr><td>10-bit</td><td>1 024</td><td>Colour cameras</td></tr>
+            <tr><td><span class="cam-exp-hl">12-bit</span></td><td><span class="cam-exp-hl">4 096</span></td><td>Most sci CMOS</td></tr>
+            <tr><td><span class="cam-exp-hl">14-bit</span></td><td><span class="cam-exp-hl">16 384</span></td><td>High-end / CCD</td></tr>
+            <tr><td>16-bit</td><td>65 536</td><td>Cooled / sCMOS</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:.65rem">In practice, usable depth is limited by <strong style="color:var(--text)">read noise</strong>. A 12-bit sensor with 3 e⁻ read noise wastes the bottom ~1.6 bits.</p>
+      </div>
+
+      <!-- Dynamic range card -->
+      <div class="cam-exp-card">
+        <h4>Dynamic Range</h4>
+        <p>The ratio of the brightest detectable signal (full-well capacity) to the dimmest (read noise floor). Expressed in dB or photographic stops.</p>
+        <div class="cam-exp-formula">DR<sub>dB</sub> = 20 · log₁₀(FWC / σ_read)</div>
+        <div class="cam-exp-formula" style="margin-top:.4rem">DR<sub>stops</sub> = log₂(FWC / σ_read)</div>
+        <table class="cam-exp-table" style="margin-top:.7rem">
+          <thead><tr><th>Camera</th><th>FWC (e⁻)</th><th>Read (e⁻)</th><th>DR (dB)</th></tr></thead>
+          <tbody>
+            <tr><td>Python5000</td><td>10 500</td><td>7.5</td><td>62.9</td></tr>
+            <tr><td>IMX541</td><td>51 000</td><td>2.0</td><td><span class="cam-exp-hl">88.1</span></td></tr>
+            <tr><td>IMX183</td><td>51 000</td><td>1.6</td><td><span class="cam-exp-hl">90.1</span></td></tr>
+            <tr><td>ICX694 (CCD)</td><td>18 000</td><td>4.0</td><td>73.1</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:.65rem">Higher FWC and lower read noise both improve DR. Modern BSI CMOS sensors often exceed CCDs despite smaller pixels.</p>
+      </div>
+    </div>
 
     <!-- Mono camera comparison -->
     <div class="cam-compare">
@@ -721,6 +781,179 @@
     </script>
   </div>
 
+  <!-- ══ LIGHT SOURCES ══ -->
+  <div id="section-light">
+    <p class="ph-eyebrow">💡 Light sources</p>
+    <h2 class="ph-section-title">Light Sources</h2>
+    <p style="color:var(--muted);font-size:1.05rem;margin:.25rem 0 1.5rem;">Illumination and laser sources available in the lab.</p>
+
+    <div class="cam-grid">
+
+      <!-- Thorlabs OSL2 Fiber Illuminator -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Thorlabs</p>
+            <p class="cam-name">OSL2</p>
+          </div>
+          <span class="cam-badge" style="background:rgba(254,240,138,.15);color:#fef08a;border-color:rgba(254,240,138,.4);">Broadband</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Type</span><span class="cam-val">Fiber illuminator (halogen)</span></div>
+          <div class="cam-row"><span class="cam-label">Spectral range</span><span class="cam-val cam-highlight">350–2100 nm</span></div>
+          <div class="cam-row"><span class="cam-label">Peak power density</span><span class="cam-val">2.70 mW/nm @ 743 nm</span></div>
+          <div class="cam-row"><span class="cam-label">Fiber output</span><span class="cam-val">SMA905</span></div>
+          <div class="cam-row"><span class="cam-label">Intensity control</span><span class="cam-val">Manual knob (0–100%)</span></div>
+          <div class="cam-row"><span class="cam-label">Long-term stability</span><span class="cam-val">Normalised · 30 h data</span></div>
+          <div class="cam-row"><span class="cam-label">Use</span><span class="cam-val">Transmission, reflection illumination</span></div>
+        </div>
+        <img src="./osl2.png" alt="OSL2 emission spectrum and stability" style="width:100%;margin-top:.8rem;border-radius:6px;opacity:.92;">
+        <div class="doc-links">
+          <a class="doc-btn pdf" href="./pdf/osl2_datasheet.pdf" target="_blank">📄 Datasheet PDF</a>
+          <a class="doc-btn" href="https://www.thorlabs.com/thorProduct.cfm?partNumber=OSL2" target="_blank">🔗 Thorlabs</a>
+        </div>
+      </div>
+
+      <!-- Thorlabs HNL020LB HeNe Laser -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Thorlabs He–Ne</p>
+            <p class="cam-name">HNL020LB</p>
+          </div>
+          <span class="cam-badge" style="background:rgba(252,100,100,.15);color:#fecaca;border-color:rgba(252,100,100,.4);">CW Laser</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Wavelength</span><span class="cam-val cam-highlight">632.8 nm (red)</span></div>
+          <div class="cam-row"><span class="cam-label">Output power</span><span class="cam-val cam-highlight">≥ 2.0 mW (TEM₀₀)</span></div>
+          <div class="cam-row"><span class="cam-label">Beam diameter</span><span class="cam-val">0.63 mm (1/e²)</span></div>
+          <div class="cam-row"><span class="cam-label">Beam divergence</span><span class="cam-val">1.3 mrad</span></div>
+          <div class="cam-row"><span class="cam-label">Polarisation</span><span class="cam-val">Random 500:1</span></div>
+          <div class="cam-row"><span class="cam-label">Mode purity</span><span class="cam-val">&gt; 95% TEM₀₀</span></div>
+          <div class="cam-row"><span class="cam-label">Coherence length</span><span class="cam-val">~ 30 cm</span></div>
+          <div class="cam-row"><span class="cam-label">Noise (RMS)</span><span class="cam-val">&lt; 0.1% (30 Hz–10 MHz)</span></div>
+          <div class="cam-row"><span class="cam-label">Warm-up</span><span class="cam-val">10 min (to 95% power)</span></div>
+          <div class="cam-row"><span class="cam-label">Lifetime</span><span class="cam-val">&gt; 30 000 h</span></div>
+          <div class="cam-row"><span class="cam-label">Operating V / I</span><span class="cam-val">1800 VDC / 6.5 mA</span></div>
+          <div class="cam-row"><span class="cam-label">Dimensions</span><span class="cam-val">Ø44 mm × 272 mm</span></div>
+          <div class="cam-row"><span class="cam-label">Safety class</span><span class="cam-val">CDRH IIIa / IEC 3R</span></div>
+          <div class="cam-row"><span class="cam-label">Use</span><span class="cam-val">CDI, holography, interferometry</span></div>
+        </div>
+        <div class="doc-links">
+          <a class="doc-btn pdf" href="./pdf/hnl020lb_datasheet.pdf" target="_blank">📄 Datasheet PDF</a>
+          <a class="doc-btn" href="https://www.thorlabs.com/thorProduct.cfm?partNumber=HNL020LB" target="_blank">🔗 Thorlabs</a>
+        </div>
+      </div>
+
+      <!-- LED ring / Köhler -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Microscope LED</p>
+            <p class="cam-name">Köhler illuminator</span></p>
+          </div>
+          <span class="cam-badge" style="background:rgba(100,232,150,.12);color:#bbf7d0;border-color:rgba(100,232,150,.4);">White LED</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Type</span><span class="cam-val">White LED, Köhler condenser</span></div>
+          <div class="cam-row"><span class="cam-label">Spectral range</span><span class="cam-val cam-highlight">430–700 nm</span></div>
+          <div class="cam-row"><span class="cam-label">Colour temp.</span><span class="cam-val">~5500 K</span></div>
+          <div class="cam-row"><span class="cam-label">Intensity control</span><span class="cam-val">0–100% (driver)</span></div>
+          <div class="cam-row"><span class="cam-label">Use</span><span class="cam-val">Bright-field, dark-field microscopy</span></div>
+        </div>
+        <div class="doc-links">
+          <a class="doc-btn pdf" href="./pdf/kohler_datasheet.pdf" target="_blank">📄 Datasheet PDF</a>
+        </div>
+      </div>
+
+      <!-- Thorlabs PL201 USB Laser Module -->
+      <div class="cam-card">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Thorlabs</p>
+            <p class="cam-name">PL201</p>
+          </div>
+          <span class="cam-badge" style="background:rgba(100,149,237,.18);color:#93c5fd;border-color:rgba(100,149,237,.45);">CW Laser</span>
+        </div>
+        <div class="cam-specs">
+          <div class="cam-row"><span class="cam-label">Wavelength</span><span class="cam-val cam-highlight">450 nm (blue)</span></div>
+          <div class="cam-row"><span class="cam-label">Output power</span><span class="cam-val">~1 mW</span></div>
+          <div class="cam-row"><span class="cam-label">Power supply</span><span class="cam-val">USB (5 V)</span></div>
+          <div class="cam-row"><span class="cam-label">Beam type</span><span class="cam-val">Free-space, collimated</span></div>
+          <div class="cam-row"><span class="cam-label">Modulation</span><span class="cam-val">On/Off (USB)</span></div>
+          <div class="cam-row"><span class="cam-label">Use</span><span class="cam-val">Alignment, fluorescence excitation</span></div>
+        </div>
+        <div class="doc-links">
+          <a class="doc-btn pdf" href="./pdf/pl201_datasheet.pdf" target="_blank">📄 Datasheet PDF</a>
+          <a class="doc-btn" href="https://www.thorlabs.com/thorProduct.cfm?partNumber=PL201" target="_blank">🔗 Thorlabs</a>
+        </div>
+      </div>
+
+      <!-- Custom LED Matrix -->
+      <div class="cam-card" style="grid-column: 1 / -1;">
+        <div class="cam-header">
+          <div>
+            <p class="cam-model">Custom build</p>
+            <p class="cam-name">LED Matrix</p>
+          </div>
+          <span class="cam-badge" style="background:rgba(167,139,250,.15);color:#c4b5fd;border-color:rgba(167,139,250,.4);">RGB Array</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:start;">
+          <div>
+            <div class="cam-specs">
+              <div class="cam-row"><span class="cam-label">Array</span><span class="cam-val cam-highlight">201 RGB LEDs (circular)</span></div>
+              <div class="cam-row"><span class="cam-label">Grid</span><span class="cam-val">15×15 positions, circular boundary</span></div>
+              <div class="cam-row"><span class="cam-label">Pitch</span><span class="cam-val">4 mm per unit</span></div>
+              <div class="cam-row"><span class="cam-label">Power</span><span class="cam-val">USB 5 V · max 3 A (single color)</span></div>
+              <div class="cam-row"><span class="cam-label">Multi-color</span><span class="cam-val">Aux power required (R+G / R+B / G+B)</span></div>
+              <div class="cam-row"><span class="cam-label">3-color limit</span><span class="cam-val">RGB sum ≤ 550 · heat sink mandatory</span></div>
+              <div class="cam-row"><span class="cam-label">Aux supply</span><span class="cam-val">≥ 6 A combined (fast-charge cable)</span></div>
+              <div class="cam-row"><span class="cam-label">LED IDs</span><span class="cam-val">0–9, a–e (15 IDs)</span></div>
+              <div class="cam-row"><span class="cam-label">Command</span><span class="cam-val" style="font-family:'JetBrains Mono',monospace;font-size:.78rem;">dpcRRRGGGBBBxxxx</span></div>
+              <div class="cam-row"><span class="cam-label">Safety</span><span class="cam-val">Overcurrent → auto-off; power-cycle to reset</span></div>
+              <div class="cam-row"><span class="cam-label">Use</span><span class="cam-val">DPC, programmable illumination, structured light</span></div>
+            </div>
+          </div>
+          <div>
+            <img src="./led_matrix.png" alt="LED matrix grid photo" style="width:100%;border-radius:6px;opacity:.9;margin-bottom:.6rem;">
+            <img src="./led_grid.png" alt="LED position map" style="width:100%;border-radius:6px;opacity:.9;">
+          </div>
+        </div>
+        <div class="doc-links">
+          <a class="doc-btn pdf" href="./pdf/led_matrix_datasheet.pdf" target="_blank">📄 Datasheet PDF</a>
+        </div>
+      </div>
+
+    </div><!-- /.cam-grid -->
+
+    <!-- Light source comparison table -->
+    <div class="cam-compare">
+      <h3>Light source comparison</h3>
+      <table class="cam-compare-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Halogen (OSL2)</th>
+            <th>He–Ne laser</th>
+            <th>White LED</th>
+            <th>PL201 (450 nm)</th>
+            <th>LED Matrix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="row-label">Spectral range</td><td>400–2500 nm</td><td>632.8 nm only</td><td>430–700 nm</td><td>450 nm only</td><td>R / G / B (discrete)</td></tr>
+          <tr><td class="row-label">Coherence</td><td>Incoherent</td><td class="best">High (≥30 cm)</td><td>Incoherent</td><td>Moderate</td><td>Incoherent</td></tr>
+          <tr><td class="row-label">Spatial coherence</td><td>Low</td><td class="best">High (TEM₀₀)</td><td>Low</td><td>Moderate</td><td>Programmable</td></tr>
+          <tr><td class="row-label">Stability</td><td>Moderate</td><td class="best">High</td><td class="best">High</td><td class="best">High</td><td class="best">High</td></tr>
+          <tr><td class="row-label">Power</td><td>~150 mW</td><td>≥ 2.0 mW</td><td>Variable</td><td>~1 mW</td><td>≤15 W (3A × 5V)</td></tr>
+          <tr><td class="row-label">Power supply</td><td>Mains</td><td>Mains</td><td>Driver</td><td class="best">USB</td><td>USB + aux</td></tr>
+          <tr><td class="row-label">Best for</td><td>Broadband spectroscopy</td><td>CDI / holography</td><td>Bright-field imaging</td><td>Alignment, fluorescence</td><td class="best">DPC / structured light</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /#section-light -->
+
   <!-- ══ HENE CDI ══ -->
   <div id="section-hene">
     <p class="ph-eyebrow">🔴 HeNe CDI</p>
@@ -820,6 +1053,11 @@
           <div class="link-url">refractiveindex.info</div>
           <div class="link-desc">Refractive index database for optical materials — glass, crystals, metals, and coatings. Wavelength-dependent n and k values, essential for optical design.</div>
         </a>
+        <a class="link-card" href="https://tikz.net/" target="_blank" rel="noopener">
+          <div class="link-card-top"><span class="link-icon">✏️</span><span class="link-name">tikz.net</span></div>
+          <div class="link-url">tikz.net</div>
+          <div class="link-desc">Gallery of publication-quality TikZ/PGF diagrams with source code — optics setups, beam paths, circuit diagrams, and scientific figures ready to copy and adapt.</div>
+        </a>
       </div>
     </div>
 
@@ -841,6 +1079,12 @@
         </a>
         <a class="journal-row" href="https://opg.optica.org/josab/home.cfm" target="_blank" rel="noopener">
           <span class="jname">JOSA B</span><span class="jdesc">Laser physics, nonlinear &amp; ultrafast optics, quantum coherence</span>
+        </a>
+        <a class="journal-row" href="https://opg.optica.org/optcon/home.cfm" target="_blank" rel="noopener">
+          <span class="jname">Optics Continuum</span><span class="jdesc">Open-access, broad optics &amp; photonics — accessible publication route across all optical science</span>
+        </a>
+        <a class="journal-row" href="https://opg.optica.org/content/optica-ai" target="_blank" rel="noopener">
+          <span class="jname">Optica AI</span><span class="jdesc">AI &amp; machine learning for optics and photonics — datasets, models, benchmarks, and reproducibility resources</span>
         </a>
 
         <p class="jpub-group"><img class="jlogo" src="https://www.google.com/s2/favicons?domain=nature.com&sz=64" alt="" loading="lazy">Nature Portfolio</p>
@@ -885,9 +1129,9 @@
 
   <!-- ══ PYTHON ══ -->
   <div id="section-python">
-    <div class="py-layout">
-      <aside class="py-sidebar" id="py-sidebar" role="tablist" aria-label="Python categories"></aside>
-      <main class="py-main" id="py-main"></main>
+    <div class="layout">
+      <aside class="sub-tabs" id="py-sidebar" role="tablist" aria-label="Python categories"></aside>
+      <main id="py-main" tabindex="-1"></main>
     </div>
 
     <!-- ── Category data ── -->
@@ -1131,17 +1375,17 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
         if (!tpl) return;
         main.innerHTML = '';
         main.appendChild(tpl.content.cloneNode(true));
-        sidebar.querySelectorAll('.py-tab').forEach(b => {
-          b.classList.toggle('active', b.dataset.cat === id);
+        sidebar.querySelectorAll('.sub-tab').forEach(b => {
+          b.setAttribute('aria-selected', b.dataset.cat === id ? 'true' : 'false');
         });
         sessionStorage.setItem('py-cat', id);
       }
 
       cats.forEach(c => {
         const btn = document.createElement('button');
-        btn.className = 'py-tab';
+        btn.className = 'sub-tab';
         btn.dataset.cat = c.id;
-        btn.innerHTML = `<span class="py-tab-icon">${c.icon}</span><span>${c.label}</span>`;
+        btn.setAttribute('role','tab'); btn.innerHTML = `<span class="py-tab-icon">${c.icon}</span><span class="lbl">${c.label}</span>`;
         btn.addEventListener('click', () => showCat(c.id));
         sidebar.appendChild(btn);
       });
@@ -1160,9 +1404,10 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
   <script src="./app.js"></script>
   <script>
     // ── Extra-tab switching ──
-    const EXTRA_PANELS = ['cam', 'hene', 'hypercom', 'hyperselect', 'links', 'python'];
+    const EXTRA_PANELS = ['cam', 'light', 'hene', 'hypercom', 'hyperselect', 'links', 'python'];
     const EXTRA_TAB_STYLES = {
       'cam':         { color: '#cffafe', background: 'rgba(103,232,249,0.15)', border: '1px solid rgba(103,232,249,.4)' },
+      'light':       { color: '#fef08a', background: 'rgba(254,240,138,0.13)', border: '1px solid rgba(254,240,138,.4)' },
       'hene':        { color: '#fecaca', background: 'rgba(252,100,100,0.15)', border: '1px solid rgba(252,100,100,.4)' },
       'hypercom':    { color: '#e9d5ff', background: 'rgba(192,132,252,0.18)', border: '1px solid rgba(192,132,252,.4)' },
       'hyperselect': { color: '#bbf7d0', background: 'rgba(100,232,150,0.15)', border: '1px solid rgba(100,232,150,.4)' },
@@ -1190,7 +1435,6 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
 
         // hide Linux shell
         document.getElementById('linux-shell').classList.add('hidden');
-        document.getElementById('search').closest('.search-wrap').style.display = 'none';
 
         // hide all placeholder sections, show the right one
         hideAllPanels();
@@ -1201,7 +1445,6 @@ pc1 = scores[:, 0].reshape(H, W) # spatial map</pre>
     // clicking Linux tab re-shows the shell
     document.querySelector('.main-tab[data-main="linux"]').addEventListener('click', () => {
       document.getElementById('linux-shell').classList.remove('hidden');
-      document.getElementById('search').closest('.search-wrap').style.display = '';
       hideAllPanels();
     });
 

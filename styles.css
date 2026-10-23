@@ -17,6 +17,15 @@
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: "Space Grotesk", system-ui, -apple-system, Segoe UI, sans-serif;
   --radius: 14px;
+  /* font scale */
+  --fs-title: 1.1rem;
+  --fs-body:  1rem;
+  --fs-code:  0.85rem;
+  --fs-small: 0.75rem;
+  --fs-tiny:  0.7rem;
+  /* spacing scale */
+  --sp-card: 18px;
+  --sp-grid: 16px;
 }
 
 * { box-sizing: border-box; }
@@ -279,11 +288,11 @@ main { min-width: 0; outline: none; }
 .card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .card.is-danger { border-left: 3px solid var(--danger); }
 .card header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.card h3 { margin: 0; font-size: 1.1rem; }
+.card h3 { margin: 0; font-size: var(--fs-title); }
 .card h3 code { color: var(--accent); }
 .badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .crumb { margin: 6px 0 0; font: 0.75rem var(--mono); color: var(--muted); }
-.desc { color: var(--muted); margin: 10px 0 14px; flex: 1; }
+.desc { color: var(--muted); font-size: var(--fs-body); margin: 10px 0 14px; flex: 1; }
 
 .code { background: #0a0e14; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .code-bar {
@@ -348,7 +357,6 @@ footer { max-width: 1200px; margin: 0 auto; padding: 24px; border-top: 1px solid
     flex-direction: row;
     overflow-x: auto;
     padding-bottom: 6px;
-    scrollbar-width: thin;
   }
   .side-title { display: none; }
   .sub-tab {

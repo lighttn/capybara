@@ -149,6 +149,11 @@ h1 .amp { font-weight: 400; }
 .main-tabs::-webkit-scrollbar-track { background: transparent; }
 .main-tabs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 999px; }
 .main-tabs::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.45); }
+.sub-tabs::-webkit-scrollbar { width: 3px; height: 3px; }
+.sub-tabs::-webkit-scrollbar-track { background: transparent; }
+.sub-tabs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 999px; }
+.sub-tabs::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.45); }
+.sub-tabs { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.25) transparent; }
 .main-tabs { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.25) transparent; }
 .main-tabs {
   position: sticky;

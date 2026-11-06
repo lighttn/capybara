@@ -145,6 +145,20 @@ h1 .amp { font-weight: 400; }
 .badge.danger { color: var(--danger); background: rgba(255, 107, 107, 0.1); }
 
 /* ---------- Main tabs ---------- */
+.home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+.home-btn:hover { background: var(--panel); border-color: var(--line); }
 .main-tabs::-webkit-scrollbar { height: 3px; }
 .main-tabs::-webkit-scrollbar-track { background: transparent; }
 .main-tabs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 999px; }

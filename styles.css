@@ -171,6 +171,8 @@ h1 .amp { font-weight: 400; }
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.15s;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .main-tab:hover { color: var(--text); background: var(--panel); }
 .main-tab .ico { font-size: 1.25rem; }

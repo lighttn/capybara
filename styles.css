@@ -145,6 +145,11 @@ h1 .amp { font-weight: 400; }
 .badge.danger { color: var(--danger); background: rgba(255, 107, 107, 0.1); }
 
 /* ---------- Main tabs ---------- */
+.main-tabs::-webkit-scrollbar { height: 3px; }
+.main-tabs::-webkit-scrollbar-track { background: transparent; }
+.main-tabs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 999px; }
+.main-tabs::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.45); }
+.main-tabs { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.25) transparent; }
 .main-tabs {
   position: sticky;
   top: 0;
